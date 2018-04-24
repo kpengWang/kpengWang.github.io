@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?dd5caa4e0169ff7ed21c4cdc78710602"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Vue任务列表实例解析 | 白夜的博客 | 进击的前端 | 学习笔记以及开源分享 | 身体和灵魂总得有一样在路上前行。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="vue">
+    <meta name="description" content="一点点前言这是一个经典的实现数据双向绑定的例子，其中着重围绕“一切以数据驱动”这个思想理念来讲解，知识点挺多。概括下是以下三点
+
+数据双向绑定
+本地localStorege数据存取
+数据更新监控
+computed计算数据条目
+directives自定义指令
+window的hash值应用筛选
+
+直接上效果图！~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue任务列表实例解析">
+<meta property="og:url" content="http://kpengWang.github.io/2017/06/06/Vue任务列表实例/index.html">
+<meta property="og:site_name" content="白夜的博客">
+<meta property="og:description" content="一点点前言这是一个经典的实现数据双向绑定的例子，其中着重围绕“一切以数据驱动”这个思想理念来讲解，知识点挺多。概括下是以下三点
+
+数据双向绑定
+本地localStorege数据存取
+数据更新监控
+computed计算数据条目
+directives自定义指令
+window的hash值应用筛选
+
+直接上效果图！~">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-8672a301098dc57b?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-30b8e45dcea40c76?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-ca0da8252f0d8a40?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-06-06T13:47:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue任务列表实例解析">
+<meta name="twitter:description" content="一点点前言这是一个经典的实现数据双向绑定的例子，其中着重围绕“一切以数据驱动”这个思想理念来讲解，知识点挺多。概括下是以下三点
+
+数据双向绑定
+本地localStorege数据存取
+数据更新监控
+computed计算数据条目
+directives自定义指令
+window的hash值应用筛选
+
+直接上效果图！~">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3117374-8672a301098dc57b?imageMogr2/auto-orient/strip">
+    
+        <link rel="alternate" type="application/atom+xml" title="白夜的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">白夜</h5>
+          <a href="mailto:417940197@qq.com" title="417940197@qq.com" class="mail">417940197@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kpengWang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.facebook.com/kpeng1011" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue任务列表实例解析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue任务列表实例解析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-06T13:07:00.000Z" itemprop="datePublished" class="page-time">
+  2017-06-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一点点前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">一点点前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#出静态"><span class="post-toc-number">2.</span> <span class="post-toc-text">出静态</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加指令"><span class="post-toc-number">3.</span> <span class="post-toc-text">添加指令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#v-for"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">v-for</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#v-on"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">v-on</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#v-model"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">v-model</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#v-show"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">v-show</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#v-bind"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">v-bind</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#el"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">el</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#data"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">data:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#computed"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">computed</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#watch"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">watch:</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#新增任务-addTodo"><span class="post-toc-number">3.9.1.</span> <span class="post-toc-text">新增任务-addTodo()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#移除任务-deleteTodo"><span class="post-toc-number">3.9.2.</span> <span class="post-toc-text">移除任务-deleteTodo()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编辑任务-editorTodo"><span class="post-toc-number">3.9.3.</span> <span class="post-toc-text">编辑任务-editorTodo()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编辑完成-editorCompleted"><span class="post-toc-number">3.9.4.</span> <span class="post-toc-text">编辑完成-editorCompleted()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#撤销编辑-editorCancel"><span class="post-toc-number">3.9.5.</span> <span class="post-toc-text">撤销编辑-editorCancel()</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#directives"><span class="post-toc-number">3.10.</span> <span class="post-toc-text">directives</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#本地存储"><span class="post-toc-number">4.</span> <span class="post-toc-text">本地存储</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#hash过滤"><span class="post-toc-number">5.</span> <span class="post-toc-text">hash过滤</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Vue任务列表实例"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue任务列表实例解析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-06 21:07:00" datetime="2017-06-06T13:07:00.000Z"  itemprop="datePublished">2017-06-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="一点点前言"><a href="#一点点前言" class="headerlink" title="一点点前言"></a>一点点前言</h2><p>这是一个经典的实现数据双向绑定的例子，其中着重围绕<strong>“一切以数据驱动”</strong>这个思想理念来讲解，知识点挺多。概括下是以下三点</p>
+<ul>
+<li>数据双向绑定</li>
+<li>本地localStorege数据存取</li>
+<li>数据更新监控</li>
+<li><code>computed</code>计算数据条目</li>
+<li><code>directives</code>自定义指令</li>
+<li>window的hash值应用筛选</li>
+</ul>
+<p>直接上效果图！~</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-8672a301098dc57b?imageMogr2/auto-orient/strip" alt="最终效果" title="">
+                </div>
+                <div class="image-caption">最终效果</div>
+            </figure>
+<h2 id="出静态"><a href="#出静态" class="headerlink" title="出静态"></a>出静态</h2><ol>
+<li>首先写好静态页面以及样式；</li>
+<li>适时也可以造一些伪数据来做调试支撑;</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> list = [&#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">"测试文字1111111"</span>,  <span class="comment">//清单列表文本</span></div><div class="line">    isChecked: <span class="literal">false</span>		<span class="comment">//勾选状态</span></div><div class="line">&#125;, &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">"测试文字2222222"</span>,</div><div class="line">    <span class="attr">isChecked</span>: <span class="literal">true</span></div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="添加指令"><a href="#添加指令" class="headerlink" title="添加指令"></a>添加指令</h2><h3 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h3><ul>
+<li><strong>用途： </strong>根据一组数据的选项列表进行渲染</li>
+<li><strong>语法：</strong> value, key in  items   |  value, key of items </li>
+<li><strong>方法：</strong> vue提供一组内部实现的方法，对数组进行操作的时候，会触发视图更新，<strong>用法和方法名同原生js一致</strong>。</li>
+<li><a href="https://cn.vuejs.org/v2/api/#v-for" target="_blank" rel="external">API</a><ul>
+<li><code>push()</code> </li>
+<li><code>pop()</code></li>
+<li><code>shift()</code></li>
+<li><code>unshift()</code></li>
+<li><code>splice()</code></li>
+<li><code>sort()</code></li>
+<li><code>reverse()</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"todo"</span> <span class="attr">:class</span>=<span class="string">"&#123;completed:item.isChecked,editing:item === editorText&#125;"</span> <span class="attr">v-for</span>=<span class="string">"item in filterList"</span>&gt;</span></div><div class="line">  </div><div class="line"><span class="comment">&lt;!--"item in filterList"也可以写成"item of filterList"--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"todo"</span> <span class="attr">:class</span>=<span class="string">"&#123;completed:item.isChecked,editing:item === editorText&#125;"</span> <span class="attr">v-for</span>=<span class="string">"item of filterList"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h3><ul>
+<li><strong>用途：</strong>用来监听DOM事件触发代码</li>
+<li><strong>语法：</strong> `v-on:eventName=”eventHandle”  </li>
+<li><strong>简写：</strong> <code>@</code></li>
+<li><strong>事件处理函数：</strong>写在<code>methods{}</code>中统一管理</li>
+<li><strong>事件对象：</strong> 在事件处理函数中获取,内联事件处理函数执行，传入事件对象<code>$event</code></li>
+<li><strong>事件修饰符：</strong>事件处理函数只有纯粹的逻辑判断，不处理DOM事件的细节。例如:阻止冒泡、取消默认行为、判断按键等。 </li>
+<li><a href="https://cn.vuejs.org/v2/api/#v-on" target="_blank" rel="external">API</a></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--</span></div><div class="line">	@keyup.13  效果等价于@keyup.enter   触发enter键</div><div class="line">	@keyup.esc 	 触发esc键 </div><div class="line">	@blur				 触发表单失焦事件</div><div class="line">--&gt;</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"例如：吃饭睡觉打豆豆；  提示：+回车即可添加任务"</span> <span class="attr">class</span>=<span class="string">"task-input"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"todo"</span> @<span class="attr">keyup.13</span>=<span class="string">"addTodo"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"edit"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-focus</span>=<span class="string">"item === editorText"</span> @<span class="attr">keyup.13</span>=<span class="string">"editorCompleted(item)"</span> @<span class="attr">keyup.esc</span>=<span class="string">"editorCancel(item)"</span> @<span class="attr">blur</span>=<span class="string">"editorCompleted(item)"</span> <span class="attr">v-model</span>=<span class="string">"item.title"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span> @<span class="attr">click</span>=<span class="string">"deleteTodo(item)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>.stop</code>  -调用event.stopPropagation()</p>
+<ul>
+<li><code>.prevent</code> - 调用 event.preventDefault()</li>
+<li><code>.capture</code>  -添加事件监听器时使用capture模式</li>
+<li><code>.self</code>  -只当事件是从侦听器绑定的<strong>元素本身</strong>触发时才触发回调</li>
+<li><code>.{keyCode|keyAlias}</code>  -只当事件是从<strong>特定键</strong>触发时才触发回调</li>
+<li><code>.native</code> -监听组件根元素的原生事件</li>
+<li><code>.once</code> - 只触发一次回调</li>
+<li><code>.left</code>  - 只当点击鼠标左键时触发（v2.2.0）</li>
+<li><code>.right</code>  - 只当点击鼠标右键时触发（v2.2.0）</li>
+<li><code>.middle</code> - 只当点击鼠标中键时触发（v2.2.0）</li>
+<li><code>.passive</code> - 以{passive:true}模式添加侦听器(v2.3.0)</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 串联修饰符 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.stop.prevent</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 键修饰符，键别名 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.enter</span>=<span class="string">"onEnter"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 键修饰符，键代码 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.13</span>=<span class="string">"onEnter"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 点击回调只会触发一次 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>按键修饰符</strong></p>
+<ul>
+<li>.enter</li>
+<li>.tab</li>
+<li>.delete</li>
+<li>.esc</li>
+<li>.space</li>
+<li>.up</li>
+<li>.down</li>
+<li>.ctrl</li>
+<li>.alt</li>
+<li>.shift</li>
+<li>.meta</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//可以通过全局 config.keyCodes 对象自定义按键修饰符别名：</span></div><div class="line"><span class="comment">//栗子 可以使用 v-on:keyup.f1</span></div><div class="line">Vue.config.keyCodes.f1 = <span class="number">112</span></div></pre></td></tr></table></figure>
+<h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h3><ul>
+<li><strong>类型：</strong> 随表单控件类型不同而不同。</li>
+<li><strong>限制：</strong><ul>
+<li><code>&lt;input&gt;</code></li>
+<li><code>&lt;select&gt;</code></li>
+<li><code>&lt;textarea&gt;</code></li>
+<li>components</li>
+</ul>
+</li>
+<li><strong>用法：</strong> 在表单控件或组件上创建双向绑定。</li>
+<li><a href="https://cn.vuejs.org/v2/api/#v-model" target="_blank" rel="external">API</a></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"例如：吃饭睡觉打豆豆；  提示：+回车即可添加任务"</span> <span class="attr">class</span>=<span class="string">"task-input"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"todo"</span> @<span class="attr">keyup.13</span>=<span class="string">"addTodo"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"toggle"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"item.isChecked"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"edit"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-focus</span>=<span class="string">"item === editorText"</span> @<span class="attr">keyup.13</span>=<span class="string">"editorCompleted(item)"</span> @<span class="attr">keyup.esc</span>=<span class="string">"editorCancel(item)"</span> @<span class="attr">blur</span>=<span class="string">"editorCompleted(item)"</span> <span class="attr">v-model</span>=<span class="string">"item.title"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h3><ul>
+<li><strong>类型：</strong> <code>any</code></li>
+<li><strong>用法：</strong><br>根据表达式之真假值，切换元素的 <code>display</code> CSS 属性。<br>当条件变化时该指令触发过渡效果。</li>
+<li><a href="https://cn.vuejs.org/v2/api/#v-show" target="_blank" rel="external">API</a></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"task-count"</span> <span class="attr">v-show</span>=<span class="string">"list.length"</span>&gt;</span></div><div class="line">   </div><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"no-task-tip"</span> <span class="attr">v-show</span>=<span class="string">"!list.length"</span>&gt;</span>还没有添加任何任务<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h3><ul>
+<li><strong>缩写：</strong> <code>:</code></li>
+<li><a href="https://cn.vuejs.org/v2/api/#v-bind" target="_blank" rel="external">API</a><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"action"</span>&gt;</span></div><div class="line">   <span class="comment">&lt;!--active  与当前hash值绑定添加--&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#all"</span> <span class="attr">:class</span>=<span class="string">"&#123;active:visibility===`all`&#125;"</span>&gt;</span>所有任务<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#unfinished"</span> <span class="attr">:class</span>=<span class="string">"&#123;active:visibility===`unfinished`&#125;"</span>&gt;</span>未完成的任务<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#finished"</span> <span class="attr">:class</span>=<span class="string">"&#123;active:visibility===`finished`&#125;"</span>&gt;</span>完成的任务<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>##选项参数</p>
+<h3 id="el"><a href="#el" class="headerlink" title="el"></a>el</h3><ul>
+<li>选项参数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">el: <span class="string">".main"</span> <span class="comment">//挂载元素</span></div></pre></td></tr></table></figure>
+<h3 id="data"><a href="#data" class="headerlink" title="data:"></a>data:</h3><ul>
+<li><strong>选项参数</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">  <span class="attr">list</span>: list, <span class="comment">//数据</span></div><div class="line">  todo: <span class="string">""</span>, <span class="comment">//输入表单内数据</span></div><div class="line">  editorText: <span class="string">""</span>, <span class="comment">//记录正在编辑的状态</span></div><div class="line">  beforeText: <span class="string">""</span>, <span class="comment">//临时记录编辑之前的内容以便后期撤销编辑使用</span></div><div class="line">  visibility: <span class="string">"all"</span> <span class="comment">// 通过该属性来进行数据筛选</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><p><a href="https://cn.vuejs.org/v2/guide/computed.html" target="_blank" rel="external">计算属性</a>在模板内的表达式是非常便利的，但是它们实际上只用于简单的运算。在模板中放入太多的逻辑会<strong>让模板过重且难以维护</strong>。</p>
+<ul>
+<li><strong>选项数据</strong></li>
+<li><strong>类型：</strong><code>{ [key: string]: Function | { get: Function, set: Function } }</code></li>
+<li><p><strong>详细：</strong></p>
+<ul>
+<li><p>计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。</p>
+</li>
+<li><p>计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。</p>
+</li>
+<li><blockquote>
+<p>注意，<strong>不应该使用箭头函数来定义计算属性函数</strong> (例如 <code>aDouble: () =&gt; this.a * 2</code>)。理由是箭头函数绑定了父级作用域的上下文，所以 <code>this</code> 将不会按照期望指向 Vue 实例，<code>this.a</code> 将是 undefined。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<p><em>不推荐：</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--</span></div><div class="line">在这种情况下，模板不再简单和清晰。在意识到这是反向显示 message 之前，你不得不再次确认第二遍。</div><div class="line">当你想要在模板中多次反向显示 message 的时候，问题会变得更糟糕。</div><div class="line">这就是对于任何复杂逻辑，你都应当使用计算属性的原因。</div><div class="line">--&gt;</div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;list.filter(function(item)&#123; return !item.isChecked &#125;).length&#125;&#125; 个未完成 <span class="tag">&lt;/<span class="name">li</span></span></div></pre></td></tr></table></figure>
+<p><strong>推荐</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;noCheckedLength&#125;&#125;个任务未完成<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">computed: &#123; <span class="comment">//计算</span></div><div class="line">  <span class="comment">// 筛选出未完成isChecked为false的数量</span></div><div class="line">  unCheckedLength() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.list.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> !item.isChecked;</div><div class="line">    &#125;).length;</div><div class="line">  &#125;,</div><div class="line">    <span class="comment">//过滤hash值</span></div><div class="line">    filterList: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> filter = &#123;</div><div class="line">        <span class="attr">all</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 过滤显示数据</span></div><div class="line">          <span class="keyword">return</span> list; <span class="comment">//返回所有数据</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">unfinished</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">return</span> list.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> !item.isChecked; <span class="comment">//返回未完成数据</span></div><div class="line">          &#125;);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">finished</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">return</span> list.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> item.isChecked; <span class="comment">//返回已完成数据</span></div><div class="line">          &#125;);</div><div class="line">        &#125;</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">      <span class="comment">// 当hash值不符合过滤条件时，显示所有</span></div><div class="line">      <span class="keyword">return</span> filter[<span class="keyword">this</span>.visibility] ? filter[<span class="keyword">this</span>.visibility](list) : list;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="watch"><a href="#watch" class="headerlink" title="watch:"></a>watch:</h3><ul>
+<li><p>选项数据</p>
+</li>
+<li><p><strong>类型：</strong>{ [key: string]: string | Function | Object }</p>
+</li>
+<li><p><strong>详细：</strong> </p>
+<p>一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 <code>$watch()</code>，遍历 watch 对象的每一个属性。</p>
+</li>
+<li><p><a href="https://cn.vuejs.org/v2/api/#watch" target="_blank" rel="external">API</a></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">watch: &#123;</div><div class="line">  <span class="comment">// 监控list属性，有数据变动时触发</span></div><div class="line"></div><div class="line">  <span class="comment">//浅监控：不会监控到对象的属性一层</span></div><div class="line">  <span class="comment">// list: function() &#123; </span></div><div class="line">  <span class="comment">//     store.save("todo-Key", this.list);</span></div><div class="line">  <span class="comment">// &#125;</span></div><div class="line"></div><div class="line">  <span class="comment">//深监控："下探"到对象属性一层，使用&#123;&#125;对象包裹方法</span></div><div class="line">  list: &#123;</div><div class="line">    <span class="attr">handler</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      store.save(<span class="string">"todo-Key"</span>, <span class="keyword">this</span>.list);</div><div class="line">    &#125;,</div><div class="line">      <span class="comment">// deep需要设置为true</span></div><div class="line">      deep: <span class="literal">true</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###methods:</p>
+<ul>
+<li><strong>选项参数</strong></li>
+<li><strong>类型：**</strong><code>{ [key: string]: Function }</code></li>
+<li><strong>详细：</strong>methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 <code>this</code>自动绑定为 Vue 实例。</li>
+<li><strong>事件处理函数中的<code>this</code>指向的是当前根实例new Vue</strong></li>
+<li><a href="https://cn.vuejs.org/v2/api/#methods" target="_blank" rel="external">API</a></li>
+</ul>
+<h4 id="新增任务-addTodo"><a href="#新增任务-addTodo" class="headerlink" title="新增任务-addTodo()"></a>新增任务-addTodo()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">addTodo(todo) &#123; <span class="comment">//添加任务</span></div><div class="line">  <span class="comment">// 此处为了isRepeat里的this指向，所以用'thisTodo'缓存</span></div><div class="line">  <span class="keyword">var</span> thisTodo = <span class="keyword">this</span>.todo,</div><div class="line">      isRepeat = <span class="keyword">this</span>.list.some(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</div><div class="line">        <span class="comment">//判断是否是重复</span></div><div class="line">        <span class="keyword">return</span> item.title == thisTodo;</div><div class="line">      &#125;);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (thisTodo) &#123;</div><div class="line">    <span class="keyword">if</span> (isRepeat) &#123;</div><div class="line">      alert(<span class="string">"任务重复"</span>);</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">this</span>.list.unshift(&#123;</div><div class="line">        <span class="attr">title</span>: thisTodo,</div><div class="line">        <span class="attr">isChecked</span>: <span class="literal">false</span></div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    alert(<span class="string">"请输入任务"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.todo = <span class="string">""</span>; <span class="comment">//回车之后清空输入框</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="移除任务-deleteTodo"><a href="#移除任务-deleteTodo" class="headerlink" title="移除任务-deleteTodo()"></a>移除任务-deleteTodo()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> deleteTodo(todo) &#123; <span class="comment">//删除任务</span></div><div class="line">   <span class="keyword">var</span> index = <span class="keyword">this</span>.list.indexOf(todo);</div><div class="line">   <span class="keyword">this</span>.list.splice(index, <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="编辑任务-editorTodo"><a href="#编辑任务-editorTodo" class="headerlink" title="编辑任务-editorTodo()"></a>编辑任务-editorTodo()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">editorTodo(todo) &#123; <span class="comment">//编辑任务</span></div><div class="line">  <span class="comment">//临时记录该任务的title，方便后续撤销赋值</span></div><div class="line">  <span class="keyword">this</span>.beforeText = todo.title;</div><div class="line">  <span class="keyword">this</span>.editorText = todo;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="编辑完成-editorCompleted"><a href="#编辑完成-editorCompleted" class="headerlink" title="编辑完成-editorCompleted()"></a>编辑完成-editorCompleted()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">etitorCompleted(todo) &#123;</div><div class="line">  <span class="keyword">this</span>.editorText = <span class="string">""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="撤销编辑-editorCancel"><a href="#撤销编辑-editorCancel" class="headerlink" title="撤销编辑-editorCancel()"></a>撤销编辑-editorCancel()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">editorCancel(todo) &#123;</div><div class="line">  todo.title = <span class="keyword">this</span>.beforeText;</div><div class="line">  <span class="keyword">this</span>.beforeText=<span class="string">''</span>;  <span class="comment">//注销临时数据</span></div><div class="line">  <span class="keyword">this</span>.editorText = <span class="string">''</span>;  <span class="comment">//显示div，隐藏input</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="directives"><a href="#directives" class="headerlink" title="directives"></a>directives</h3><p>除了默认设置的核心指令( <code>v-model</code> 和 <code>v-show</code> ),Vue 也允许注册<a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank" rel="external">自定义指令</a>。</p>
+<ul>
+<li><strong>选项参数</strong></li>
+<li><strong>钩子函数（可选）</strong><ul>
+<li><code>update</code>: 被绑定元素所在的模板更新时调用，而不论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新（详细的钩子函数参数见下）。</li>
+</ul>
+</li>
+<li><p><strong>钩子函数参数</strong></p>
+<ul>
+<li><strong>el</strong>: 指令所绑定的元素，可以用来直接操作 DOM 。</li>
+<li><strong>binding</strong>: 一个对象，包含以下属性：</li>
+<li><strong>value</strong>: 指令的绑定值， 例如： <code>v-my-directive=&quot;1 + 1&quot;</code>, value 的值是 <code>2</code>。</li>
+</ul>
+<p>案例里所应用到的，添加focus效果</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 自定义指令</span></div><div class="line">directives: &#123;</div><div class="line">  <span class="comment">// 注册一个自定义局部指令 v-focus</span></div><div class="line">  <span class="string">"focus"</span>: &#123; <span class="comment">//"focus"--自定义key值,自动聚焦，在标签内调用时要加前缀"v-"</span></div><div class="line"></div><div class="line">    <span class="comment">// 钩子函数update()，被绑定的元素所在的模版更新时自行调用</span></div><div class="line">    update(el, binding) &#123;</div><div class="line">      <span class="comment">//el指向的是元素</span></div><div class="line">      <span class="keyword">if</span> (binding.value) &#123;</div><div class="line">        el.focus(); <span class="comment">//自动获取焦点</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>控制台输出形参<code>el</code>：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-30b8e45dcea40c76?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="el" title="">
+                </div>
+                <div class="image-caption">el</div>
+            </figure></p>
+<p>控制台输出形参<code>binding</code>：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-ca0da8252f0d8a40?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="binding" title="">
+                </div>
+                <div class="image-caption">binding</div>
+            </figure></p>
+<hr>
+<h2 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h2><ul>
+<li>利用localStorage来本地存储</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//存取localStorage中的数据</span></div><div class="line"><span class="keyword">var</span> store = &#123;</div><div class="line">    save(key, value) &#123; <span class="comment">// 保存数据</span></div><div class="line">        <span class="comment">// 将value值转换为json的字符串格式</span></div><div class="line">        localStorage.setItem(key, <span class="built_in">JSON</span>.stringify(value));</div><div class="line">    &#125;,</div><div class="line">    fetch(key) &#123; <span class="comment">//取出数据</span></div><div class="line">        <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(localStorage.getItem(key)) || [];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="hash过滤"><a href="#hash过滤" class="headerlink" title="hash过滤"></a>hash过滤</h2><ul>
+<li><strong>定义和用法：</strong>hash 属性是一个可读可写的字符串，该字符串是 URL 的锚部分（从 # 号开始的部分）。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">watchHashChange(); <span class="comment">//函数默认自运行</span></div><div class="line"></div><div class="line"><span class="comment">//监控hash更改</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">watchHashChange</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//截取hash值的“#”前缀</span></div><div class="line">    <span class="keyword">var</span> hash = location.hash.slice(<span class="number">1</span>);</div><div class="line"></div><div class="line">    <span class="comment">//hash值与过滤保持条件一致，视图更新</span></div><div class="line">    vm.visibility = hash;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, watchHashChange);</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-06-06T13:47:57.000Z" itemprop="dateUpdated">2017-06-06 21:47:57</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/06/06/Vue任务列表实例/" target="_blank" rel="external">http://kpengWang.github.io/2017/06/06/Vue任务列表实例/</a>
+        
+    </div>
+    <footer>
+        <a href="http://kpengWang.github.io">
+            <img src="/img/head.jpg" alt="白夜">
+            白夜
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/&title=《Vue任务列表实例解析》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/&title=《Vue任务列表实例解析》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue任务列表实例解析》 — 白夜的博客&url=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/14/Vue下拉列表实例（组件的使用）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue下拉列表实例（组件的使用）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/30/Vue入门学习笔记/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hello Vue!~</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://kpengWang.github.io/2017/06/06/Vue任务列表实例/index.html',
+        sourceId: 'Vue任务列表实例',
+        productKey: 'b9f52fc636224e8b93d9c1ed3db6c5a0',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        嗯，请简单粗暴地爱我~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!--<div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>-->
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>Yesterday U Said Tomorrow</span>
+            <span>白夜 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/&title=《Vue任务列表实例解析》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/&title=《Vue任务列表实例解析》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue任务列表实例解析》 — 白夜的博客&url=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kpengWang.github.io/2017/06/06/Vue任务列表实例/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

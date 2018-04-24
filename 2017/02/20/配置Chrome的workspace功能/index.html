@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?dd5caa4e0169ff7ed21c4cdc78710602"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>配置Chrome的workspace功能 | 白夜的博客 | 进击的前端 | 学习笔记以及开源分享 | 身体和灵魂总得有一样在路上前行。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Chrome,小技巧">
+    <meta name="description" content="之前经常做css的微调的时候，每次在chrome的控制台调好之后，还得粘贴到源码或者在源码里复写一次。使用Chrome的Workspace功能可以将控制台修改的内容同步到源码里，可以省事不少。方法很简单！
+
+
+                
+                    
+                    
+                
+                举个栗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置Chrome的workspace功能">
+<meta property="og:url" content="http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/index.html">
+<meta property="og:site_name" content="白夜的博客">
+<meta property="og:description" content="之前经常做css的微调的时候，每次在chrome的控制台调好之后，还得粘贴到源码或者在源码里复写一次。使用Chrome的Workspace功能可以将控制台修改的内容同步到源码里，可以省事不少。方法很简单！
+
+
+                
+                    
+                    
+                
+                举个栗">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-42a79df46b653dff.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-59559a0472b803c7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-3780e3c42b3b20bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-cc5c0d27bb15103a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-89356bf3acf47da4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-8ffdc60b532c3756.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-63c5d6a1f6ecf1b1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-603a786db20189c8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-02-28T14:53:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="配置Chrome的workspace功能">
+<meta name="twitter:description" content="之前经常做css的微调的时候，每次在chrome的控制台调好之后，还得粘贴到源码或者在源码里复写一次。使用Chrome的Workspace功能可以将控制台修改的内容同步到源码里，可以省事不少。方法很简单！
+
+
+                
+                    
+                    
+                
+                举个栗">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3117374-42a79df46b653dff.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="白夜的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">白夜</h5>
+          <a href="mailto:417940197@qq.com" title="417940197@qq.com" class="mail">417940197@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kpengWang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.facebook.com/kpeng1011" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">配置Chrome的workspace功能</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">配置Chrome的workspace功能</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-20T14:05:41.000Z" itemprop="datePublished" class="page-time">
+  2017-02-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#F12打开控制台–Sources"><span class="post-toc-number">1.</span> <span class="post-toc-text">F12打开控制台–Sources</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在对话框选择相应路由"><span class="post-toc-number">2.</span> <span class="post-toc-text">在对话框选择相应路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#将源码加入映像"><span class="post-toc-number">3.</span> <span class="post-toc-text">将源码加入映像</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#具体步骤"><span class="post-toc-number">4.</span> <span class="post-toc-text">具体步骤</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#删除映像"><span class="post-toc-number">5.</span> <span class="post-toc-text">删除映像</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-配置Chrome的workspace功能"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">配置Chrome的workspace功能</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-20 22:05:41" datetime="2017-02-20T14:05:41.000Z"  itemprop="datePublished">2017-02-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>之前经常做css的微调的时候，每次在chrome的控制台调好之后，还得粘贴到源码或者在源码里复写一次。<br>使用Chrome的Workspace功能可以将控制台修改的内容同步到源码里，可以省事不少。方法很简单！</p>
+<hr>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-42a79df46b653dff.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="举个栗子" title="">
+                </div>
+                <div class="image-caption">举个栗子</div>
+            </figure>
+<h3 id="F12打开控制台–Sources"><a href="#F12打开控制台–Sources" class="headerlink" title="F12打开控制台–Sources"></a>F12打开控制台–Sources</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-59559a0472b803c7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="右键将项目文件夹导入workspace" title="">
+                </div>
+                <div class="image-caption">右键将项目文件夹导入workspace</div>
+            </figure>
+<h3 id="在对话框选择相应路由"><a href="#在对话框选择相应路由" class="headerlink" title="在对话框选择相应路由"></a>在对话框选择相应路由</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-3780e3c42b3b20bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在对话框选择相应路由" title="">
+                </div>
+                <div class="image-caption">在对话框选择相应路由</div>
+            </figure>
+<p>此时浏览器会弹出权限对话框，点击“允许”<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-cc5c0d27bb15103a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击允许" title="">
+                </div>
+                <div class="image-caption">点击允许</div>
+            </figure></p>
+<h3 id="将源码加入映像"><a href="#将源码加入映像" class="headerlink" title="将源码加入映像"></a>将源码加入映像</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-89356bf3acf47da4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="将源码加入映像" title="">
+                </div>
+                <div class="image-caption">将源码加入映像</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-8ffdc60b532c3756.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="确定文件路由" title="">
+                </div>
+                <div class="image-caption">确定文件路由</div>
+            </figure>
+<h3 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h3><p>这里是跟之前一样的，在控制台里修改样式，然后会看到IDE里的响应文件代码已经同步修改。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-63c5d6a1f6ecf1b1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ截图20170210085741.jpg" title="">
+                </div>
+                <div class="image-caption">QQ截图20170210085741.jpg</div>
+            </figure></p>
+<h3 id="删除映像"><a href="#删除映像" class="headerlink" title="删除映像"></a>删除映像</h3><p>在控制台快捷键F1选择控制台的“setting”，打开Workspace配置<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-603a786db20189c8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="映像的增删改查" title="">
+                </div>
+                <div class="image-caption">映像的增删改查</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-02-28T14:53:12.000Z" itemprop="dateUpdated">2017-02-28 22:53:12</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/02/20/配置Chrome的workspace功能/" target="_blank" rel="external">http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/</a>
+        
+    </div>
+    <footer>
+        <a href="http://kpengWang.github.io">
+            <img src="/img/head.jpg" alt="白夜">
+            白夜
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小技巧/">小技巧</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/&title=《配置Chrome的workspace功能》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/&title=《配置Chrome的workspace功能》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《配置Chrome的workspace功能》 — 白夜的博客&url=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/02/25/面试题集锦（HTML篇）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">面试题集锦（html篇）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/02/02/this 、 call 和 apply/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">this 、 call 和 apply</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/index.html',
+        sourceId: '配置Chrome的workspace功能',
+        productKey: 'b9f52fc636224e8b93d9c1ed3db6c5a0',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        嗯，请简单粗暴地爱我~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!--<div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>-->
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>Yesterday U Said Tomorrow</span>
+            <span>白夜 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/&title=《配置Chrome的workspace功能》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/&title=《配置Chrome的workspace功能》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《配置Chrome的workspace功能》 — 白夜的博客&url=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kpengWang.github.io/2017/02/20/配置Chrome的workspace功能/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

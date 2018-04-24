@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?dd5caa4e0169ff7ed21c4cdc78710602"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>this 、 call 和 apply | 白夜的博客 | 进击的前端 | 学习笔记以及开源分享 | 身体和灵魂总得有一样在路上前行。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="读书笔记,《JavaScript设计模式与开发实践》">
+    <meta name="description" content="this跟别的语言大相径庭的是，JavaScript的 this 总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。
+this 的指向
+作为对象的方法调用。
+当函数作为对象的方法被调用时， this 指向该对象。
+123456789var obj = &amp;#123;  a: 1,  getA: function() &amp;#123;    console">
+<meta property="og:type" content="article">
+<meta property="og:title" content="this 、 call 和 apply">
+<meta property="og:url" content="http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/index.html">
+<meta property="og:site_name" content="白夜的博客">
+<meta property="og:description" content="this跟别的语言大相径庭的是，JavaScript的 this 总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。
+this 的指向
+作为对象的方法调用。
+当函数作为对象的方法被调用时， this 指向该对象。
+123456789var obj = &amp;#123;  a: 1,  getA: function() &amp;#123;    console">
+<meta property="og:updated_time" content="2017-08-11T10:41:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="this 、 call 和 apply">
+<meta name="twitter:description" content="this跟别的语言大相径庭的是，JavaScript的 this 总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。
+this 的指向
+作为对象的方法调用。
+当函数作为对象的方法被调用时， this 指向该对象。
+123456789var obj = &amp;#123;  a: 1,  getA: function() &amp;#123;    console">
+    
+        <link rel="alternate" type="application/atom+xml" title="白夜的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">白夜</h5>
+          <a href="mailto:417940197@qq.com" title="417940197@qq.com" class="mail">417940197@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kpengWang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.facebook.com/kpeng1011" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">this 、 call 和 apply</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">this 、 call 和 apply</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-02T15:28:00.000Z" itemprop="datePublished" class="page-time">
+  2017-02-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#this"><span class="post-toc-number">1.</span> <span class="post-toc-text">this</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#this-的指向"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">this 的指向</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#丢失的-this"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">丢失的 this</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#call和apply"><span class="post-toc-number">2.</span> <span class="post-toc-text">call和apply</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#call和apply-的区别"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">call和apply 的区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#call-和-apply-的用途"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">call 和 apply 的用途</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#改变-this-指向"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">改变 this 指向</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Function-prototype-bind"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">Function.prototype.bind</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#借用其他对象的方法"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">借用其他对象的方法</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-this 、 call 和 apply"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">this 、 call 和 apply</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-02 23:28:00" datetime="2017-02-02T15:28:00.000Z"  itemprop="datePublished">2017-02-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>跟别的语言大相径庭的是，JavaScript的 this 总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。</p>
+<h3 id="this-的指向"><a href="#this-的指向" class="headerlink" title="this 的指向"></a>this 的指向</h3><ul>
+<li><p>作为对象的方法调用。</p>
+<p><strong>当函数作为对象的方法被调用时， this 指向该对象。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>: <span class="number">1</span>,</div><div class="line">  <span class="attr">getA</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span> === obj); <span class="comment">//true</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a; <span class="comment">//1</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(obj.getA());</div></pre></td></tr></table></figure>
+</li>
+<li><p>作为普通函数调用。</p>
+<p><strong>this 总是指向全局对象window。</strong></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</div><div class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log( getName() ); <span class="comment">// 输出：globalName</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>构造器调用。</p>
+<p><strong>当用 new 运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的<code>this</code>就指向返回的这个对象。</strong></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> MyClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = <span class="string">'steven'</span>;</div><div class="line">   <span class="keyword">return</span> &#123; <span class="comment">// 显式地返回一个对象</span></div><div class="line">     name: <span class="string">'anne'</span></div><div class="line">   &#125;</div><div class="line"> &#125;;</div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> MyClass();</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"使用构造器调用："</span> + obj.name); <span class="comment">// 输出：anne</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>Function.prototype.call 或 Function.prototype.apply 调用。</p>
+<p><strong>可以动态地改变传入函数的 <code>this</code>。</strong></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;</div><div class="line"><span class="attr">name</span>: <span class="string">'steven'</span>,</div><div class="line"><span class="attr">getName</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line"><span class="attr">name</span>: <span class="string">'anne'</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(obj1.getName.call(obj2));<span class="comment">// 输出：anne</span></div></pre></td></tr></table></figure>
+<h3 id="丢失的-this"><a href="#丢失的-this" class="headerlink" title="丢失的 this"></a>丢失的 this</h3><p>​一个例子：使用<code>getId</code>变量来代替<code>document.getElementById</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getId = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(id);</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(getId(<span class="string">'div1'</span>).id)</div></pre></td></tr></table></figure>
+<p>​    如果<code>getId</code>直接 来引用 <code>document.getElementById 之后</code>，再调用<code>getId</code> ，此时就成了普通函数调用，函数内部的 <code>this</code>指向了<code>window</code> ，而不是原来的 <code>document</code>，会出现报错,情况如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> getId = <span class="built_in">document</span>.getElementById;</div><div class="line"><span class="built_in">console</span>.log(getId(<span class="string">'div1'</span>).id); <span class="comment">//Uncaught TypeError: Illegal invocation （非法调用）</span></div></pre></td></tr></table></figure>
+<p>​    我们可以尝试利用 apply 把 document 当作 this 传入 getId 函数，帮助“修正” this： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> getId = (<span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="keyword">return</span> obj.apply(<span class="built_in">document</span>, <span class="built_in">arguments</span>);</div><div class="line">   &#125;</div><div class="line"> &#125;)(<span class="built_in">document</span>.getElementById);</div><div class="line"><span class="built_in">console</span>.log(getId(<span class="string">'div1'</span>).id)</div></pre></td></tr></table></figure>
+<h2 id="call和apply"><a href="#call和apply" class="headerlink" title="call和apply"></a>call和apply</h2><h3 id="call和apply-的区别"><a href="#call和apply-的区别" class="headerlink" title="call和apply 的区别"></a>call和apply 的区别</h3><p>Function.prototype.call 和 Function.prototype.apply 都是非常常用的方法。它们的作用一模一样，<strong>区别仅在于传入参数形式的不同</strong>。</p>
+<ul>
+<li><p>apply 接受两个参数：</p>
+<ul>
+<li>第一个参数指定了函数体内 this 对象的指向</li>
+<li>第二个参数为一个带下标的集合（数组或类数组）， <code>apply</code>方法把这个集合中的元素作为参数传递给被调用的函数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"> a, b, c </span>)</span>&#123;</div><div class="line">alert ( [ a, b, c ] ); <span class="comment">// 输出 [ 1, 2, 3 ]</span></div><div class="line">&#125;;</div><div class="line">func.apply( <span class="literal">null</span>, [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ] );<span class="comment">//1参为null，函数体内的 this 会指向默认的宿主对象，即window</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>call 传入的参数数量不固定</p>
+<ul>
+<li>第一个参数指定了函数体内 this 对象的指向</li>
+<li>从第二个参数开始往后，每个参数被依次传入函数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"> a, b, c </span>)</span>&#123;</div><div class="line">alert ( [ a, b, c ] ); <span class="comment">// 输出 [ 1, 2, 3 ]</span></div><div class="line">&#125;;</div><div class="line">func.call( <span class="literal">null</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> );<span class="comment">//1参为null，函数体内的 this 会指向默认的宿主对象，即window</span></div></pre></td></tr></table></figure>
+<p>当调用一个函数时，JavaScript 的解释器并不会计较形参和实参在数量、类型以及顺序上的区别，JavaScript的参数在内部就是用一个数组来表示的。从这个意义上说， <strong><code>apply</code>比 <code>call</code>的使用率更高，我们不必关心具体有多少参数被传入函数，只要用 apply 一股脑地推过去就可以了。</strong></p>
+<p>当使用 <code>call</code>或者 <code>apply</code>的时候，如果我们传入的第一个参数为 <code>null</code>，函数体内的 this 会指向默认的宿主对象，在浏览器中则是 <code>window</code> ,但如果是在严格模式下，函数体内的 <code>this</code>还是为 <code>null</code> 。</p>
+<p>有时候我们使用 <code>call</code>或者 <code>apply</code>的目的不在于指定 <code>this</code>指向，而是另有用途，比如借用其他对象的方法。<strong>那么我们可以传入 <code>null</code>来代替某个具体的对象。</strong></p>
+</li>
+</ul>
+<h3 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h3><h4 id="改变-this-指向"><a href="#改变-this-指向" class="headerlink" title="改变 this 指向"></a>改变 this 指向</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'steven'</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'anne'</span></div><div class="line">&#125;;</div><div class="line"><span class="built_in">window</span>.name = <span class="string">'window'</span>;</div><div class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">&#125;;</div><div class="line">getName(); <span class="comment">//'window'</span></div><div class="line">getName.apply(obj1); <span class="comment">//'steven'</span></div><div class="line">getName.apply(obj2); <span class="comment">//'anne'</span></div></pre></td></tr></table></figure>
+<p>在执行<code>getName.apply(obj1)</code>时， <code>getName</code>函数体内的 <code>this</code>就指向 <code>obj1</code>对象，实际相当于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(obj1.name);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>一个点击的实例场景：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> _that = <span class="keyword">this</span>;  <span class="comment">//需要额外申明一个中转变量来存储对象的this</span></div><div class="line">  <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(_that.id);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> foo();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在使用<code>apply</code>或<code>call</code>后：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.id);</div><div class="line">  &#125;</div><div class="line">  foo.apply(<span class="keyword">this</span>);</div><div class="line">  <span class="keyword">return</span> foo();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="Function-prototype-bind"><a href="#Function-prototype-bind" class="headerlink" title="Function.prototype.bind"></a>Function.prototype.bind</h4><p>大部分现代浏览器都实现了内置的 <code>Function.prototype.bind</code> ，<strong>用来指定函数内部的 this 指向</strong>，如果没有的话模拟起来不困难：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> self = <span class="keyword">this</span>; <span class="comment">//保存原函数</span></div><div class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// 这句代码才是执行原来的 func 函数，并且指定 context对象为 func 函数体内的 this ，也是我们想修正的 this 对象</span></div><div class="line">     <span class="keyword">return</span> self.apply(context, <span class="built_in">arguments</span>);</div><div class="line">   &#125;</div><div class="line"> &#125;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">   <span class="attr">name</span>: <span class="string">'steven'</span></div><div class="line"> &#125;;</div><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.name); <span class="comment">//输出'steven'</span></div><div class="line">&#125;.bind(obj);</div><div class="line"></div><div class="line">func();</div></pre></td></tr></table></figure>
+<p>再稍微复杂一些，使得可以往<code>func</code>函数内预先填写一些参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="keyword">var</span> self = <span class="keyword">this</span>, <span class="comment">// 保存原函数</span></div><div class="line">context = [].shift.call( <span class="built_in">arguments</span> ), <span class="comment">// 需要绑定的 this 上下文</span></div><div class="line">args = [].slice.call( <span class="built_in">arguments</span> ); <span class="comment">// 剩余的参数转成数组</span></div><div class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 返回一个新的函数</span></div><div class="line"><span class="keyword">return</span> self.apply( context, [].concat.call( args, [].slice.call( <span class="built_in">arguments</span> ) ) );</div><div class="line"><span class="comment">// 执行新的函数的时候，会把之前传入的 context 当作新函数体内的 this</span></div><div class="line"><span class="comment">// 并且组合两次分别传入的参数，作为新函数的参数</span></div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line"><span class="attr">name</span>: <span class="string">'sven'</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"> a, b, c, d </span>)</span>&#123;</div><div class="line">alert ( <span class="keyword">this</span>.name ); <span class="comment">// 输出：sven</span></div><div class="line">alert ( [ a, b, c, d ] ) <span class="comment">// 输出：[ 1, 2, 3, 4 ]</span></div><div class="line">&#125;.bind( obj, <span class="number">1</span>, <span class="number">2</span> );</div><div class="line">func( <span class="number">3</span>, <span class="number">4</span> );</div></pre></td></tr></table></figure>
+<h4 id="借用其他对象的方法"><a href="#借用其他对象的方法" class="headerlink" title="借用其他对象的方法"></a>借用其他对象的方法</h4><ul>
+<li>场景一：<strong>鸠占鹊巢</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = name;</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> B = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  A.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">B.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> B(<span class="string">'steven'</span>);</div><div class="line"><span class="built_in">console</span>.log(b.getName());</div></pre></td></tr></table></figure>
+<ul>
+<li>场景二：<strong>往 <code>arguments</code>中添加一个新的元素，通常会借用<code>Array.prototype.push</code></strong> </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.push.call(<span class="built_in">arguments</span>,<span class="number">3</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</div><div class="line">&#125;)(<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,c)</div></pre></td></tr></table></figure>
+<p>在操作 <code>arguments</code>的时候，我们经常非常频繁地找<code>Array.prototype</code>对象借用方法，例如：</p>
+<ul>
+<li>想把 arguments 转成真正的数组的时候，可以借用 <code>Array.prototype.slice</code> 方法。</li>
+<li>想截去arguments 列表中的头一个元素时，可以借用<code>Array.prototype.shift</code>方法。</li>
+</ul>
+<p>我们甚至可以把“任意”对象传入 <code>Array.prototype.push</code>，但是对象要满足以下两个条件：</p>
+<ol>
+<li>对象本身要可以存取属性</li>
+<li>对象的 length 属性可读写</li>
+</ol>
+<blockquote>
+<p>本文主要提炼于《JavaScript设计模式和开发实践》第2章。</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-08-11T10:41:45.000Z" itemprop="dateUpdated">2017-08-11 18:41:45</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/02/02/this 、 call 和 apply/" target="_blank" rel="external">http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/</a>
+        
+    </div>
+    <footer>
+        <a href="http://kpengWang.github.io">
+            <img src="/img/head.jpg" alt="白夜">
+            白夜
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《JavaScript设计模式与开发实践》/">《JavaScript设计模式与开发实践》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/&title=《this 、 call 和 apply》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/&title=《this 、 call 和 apply》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《this 、 call 和 apply》 — 白夜的博客&url=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/02/20/配置Chrome的workspace功能/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">配置Chrome的workspace功能</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/11/gulp玩起来/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Gulp玩起来</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/index.html',
+        sourceId: 'this 、 call 和 apply',
+        productKey: 'b9f52fc636224e8b93d9c1ed3db6c5a0',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        嗯，请简单粗暴地爱我~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!--<div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>-->
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>Yesterday U Said Tomorrow</span>
+            <span>白夜 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/&title=《this 、 call 和 apply》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/&title=《this 、 call 和 apply》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《this 、 call 和 apply》 — 白夜的博客&url=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kpengWang.github.io/2017/02/02/this 、 call 和 apply/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

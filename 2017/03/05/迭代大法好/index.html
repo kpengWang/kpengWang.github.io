@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?dd5caa4e0169ff7ed21c4cdc78710602"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>迭代大法好 | 白夜的博客 | 进击的前端 | 学习笔记以及开源分享 | 身体和灵魂总得有一样在路上前行。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js技巧">
+    <meta name="description" content="本文主要整理了Array.prototype方法的使用，参考于ECMAScript 5;
+
+Array.prototype.indexOf (js v1.6)
+
+Array.prototype.lastIndexOf (js v1.6)
+
+Array.prototype.every (js v1.6)
+
+Array.prototype.some (js v1.6)
+
+Array.prototype">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迭代大法好">
+<meta property="og:url" content="http://kpengWang.github.io/2017/03/05/迭代大法好/index.html">
+<meta property="og:site_name" content="白夜的博客">
+<meta property="og:description" content="本文主要整理了Array.prototype方法的使用，参考于ECMAScript 5;
+
+Array.prototype.indexOf (js v1.6)
+
+Array.prototype.lastIndexOf (js v1.6)
+
+Array.prototype.every (js v1.6)
+
+Array.prototype.some (js v1.6)
+
+Array.prototype">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-28b7f4872d70d6b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-07-02T14:46:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="迭代大法好">
+<meta name="twitter:description" content="本文主要整理了Array.prototype方法的使用，参考于ECMAScript 5;
+
+Array.prototype.indexOf (js v1.6)
+
+Array.prototype.lastIndexOf (js v1.6)
+
+Array.prototype.every (js v1.6)
+
+Array.prototype.some (js v1.6)
+
+Array.prototype">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3117374-28b7f4872d70d6b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="白夜的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">白夜</h5>
+          <a href="mailto:417940197@qq.com" title="417940197@qq.com" class="mail">417940197@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kpengWang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.facebook.com/kpeng1011" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">迭代大法好</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">迭代大法好</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-05T06:09:20.000Z" itemprop="datePublished" class="page-time">
+  2017-03-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#indexOf"><span class="post-toc-number">1.</span> <span class="post-toc-text">indexOf()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#lastindexOf"><span class="post-toc-number">2.</span> <span class="post-toc-text">lastindexOf()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#every"><span class="post-toc-number">3.</span> <span class="post-toc-text">every()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#some"><span class="post-toc-number">4.</span> <span class="post-toc-text">some()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#foEach"><span class="post-toc-number">5.</span> <span class="post-toc-text">foEach()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#map"><span class="post-toc-number">6.</span> <span class="post-toc-text">map()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#filter"><span class="post-toc-number">7.</span> <span class="post-toc-text">filter()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#reduce"><span class="post-toc-number">8.</span> <span class="post-toc-text">reduce()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#reduceRight"><span class="post-toc-number">9.</span> <span class="post-toc-text">reduceRight()</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-迭代大法好"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">迭代大法好</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-05 14:09:20" datetime="2017-03-05T06:09:20.000Z"  itemprop="datePublished">2017-03-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文主要整理了<code>Array.prototype</code>方法的使用，参考于<a href="http://kangax.github.io/compat-table/es5/" target="_blank" rel="external">ECMAScript 5</a>;</p>
+<ol>
+<li><p>Array.prototype.indexOf (js v1.6)</p>
+</li>
+<li><p>Array.prototype.lastIndexOf (js v1.6)</p>
+</li>
+<li><p>Array.prototype.every (js v1.6)</p>
+</li>
+<li><p>Array.prototype.some (js v1.6)</p>
+</li>
+<li><p>Array.prototype.forEach (js v1.6)</p>
+</li>
+<li><p>Array.prototype.map (js v1.6)</p>
+</li>
+<li><p>Array.prototype.filter (js v1.6)</p>
+</li>
+<li><p>Array.prototype.isArray (js v1.6)</p>
+</li>
+<li><p>Array.prototype.reduce(js v1.8)</p>
+</li>
+<li><p>Array.prototype.reduceRight(js v1.8)</p>
+<p>​</p>
+</li>
+</ol>
+<p><strong>浏览器支持:</strong></p>
+<ul>
+<li>Opera 11+</li>
+<li>Firefox 3.6+</li>
+<li>Safari 5+</li>
+<li>Chrome 8+</li>
+<li>Internet Explorer 9+</li>
+</ul>
+<hr>
+<h4 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf()"></a>indexOf()</h4><blockquote>
+<p><code>indexOf()</code>方法返回在该数组中第一个找到的元素位置，如果它不存在则返回-1。</p>
+</blockquote>
+<p>使用for:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'apple'</span>,<span class="string">'orange'</span>,<span class="string">'pear'</span>],</div><div class="line">    found = <span class="literal">false</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i= <span class="number">0</span>, l = arr.length; i&lt; l; i++)&#123;</div><div class="line">    <span class="keyword">if</span>(arr[i] === <span class="string">'orange'</span>)&#123;</div><div class="line">        found = <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"found:"</span>,found);<span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>使用indexOf():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'apple'</span>, <span class="string">'orange'</span>, <span class="string">'pear'</span>];</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"found:"</span>, arr.indexOf(<span class="string">"orange"</span>) != <span class="number">-1</span>); <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>兼容性处理:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 对于古董浏览器，如IE6-IE8</span></div><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.forEach != <span class="string">"function"</span>) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.forEach = <span class="function"><span class="keyword">function</span> (<span class="params">fn, context</span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>, length = <span class="keyword">this</span>.length; k &lt; length; k++) &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">"function"</span> &amp;&amp; <span class="built_in">Object</span>.prototype.hasOwnProperty.call(<span class="keyword">this</span>, k)) &#123;</div><div class="line">        fn.call(context, <span class="keyword">this</span>[k], k, <span class="keyword">this</span>);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="lastindexOf"><a href="#lastindexOf" class="headerlink" title="lastindexOf()"></a>lastindexOf()</h4><blockquote>
+<p><code>lastIndexOf()</code> 方法返回在该数组中最后一个找到的元素位置，和 indexof相反。</p>
+</blockquote>
+<p>使用lastIndexOf():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [<span class="number">2</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">5</span>];</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(data.lastIndexOf(<span class="number">5</span>)); <span class="comment">// 4</span></div><div class="line"><span class="built_in">console</span>.log(data.lastIndexOf(<span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 1 (从后往前，索引值小于3的开始搜索)</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(data.lastIndexOf(<span class="number">4</span>)); <span class="comment">// -1 (未找到)</span></div></pre></td></tr></table></figure>
+<p>兼容性处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.lastIndexOf != <span class="string">"function"</span>) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.lastIndexOf = <span class="function"><span class="keyword">function</span> (<span class="params">searchElement, fromIndex</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> index = <span class="number">-1</span>, length = <span class="keyword">this</span>.length;</div><div class="line">    fromIndex = fromIndex * <span class="number">1</span> || length - <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k = length - <span class="number">1</span>; k &gt; <span class="number">-1</span>; k-=<span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (k &lt;= fromIndex &amp;&amp; <span class="keyword">this</span>[k] === searchElement) &#123;</div><div class="line">            index = k;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> index;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="every"><a href="#every" class="headerlink" title="every()"></a>every()</h4><blockquote>
+<p><code>evety()</code>方法可是检测数组中的<strong>每一项</strong>是否符合条件</p>
+</blockquote>
+<p>使用for：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* </span></div><div class="line">* 是否全部大于0</div><div class="line">*/</div><div class="line"><span class="keyword">var</span> ary = [<span class="number">12</span>,<span class="number">23</span>,<span class="number">24</span>,<span class="number">42</span>,<span class="number">1</span>];</div><div class="line"><span class="keyword">var</span> result = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; ary.length; i++) &#123;</div><div class="line">    <span class="keyword">if</span>(ary[i] &lt; <span class="number">0</span>)&#123;</div><div class="line">       <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">//需全部满足</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(result()) <span class="comment">//全部满足,返回true</span></div></pre></td></tr></table></figure>
+<p>使用every:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ary = [<span class="number">12</span>,<span class="number">23</span>,<span class="number">24</span>,<span class="number">42</span>,<span class="number">1</span>];</div><div class="line"><span class="keyword">var</span> result = ary.every(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> item &gt; <span class="number">0</span></div><div class="line">&#125;)</div><div class="line"><span class="built_in">console</span>.log(result)</div></pre></td></tr></table></figure>
+<p>兼容性处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.every != <span class="string">"function"</span>) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.every = <span class="function"><span class="keyword">function</span> (<span class="params">fn, context</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> passed = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">"function"</span>) &#123;</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>, length = <span class="keyword">this</span>.length; k &lt; length; k++) &#123;</div><div class="line">          <span class="keyword">if</span> (passed === <span class="literal">false</span>) <span class="keyword">break</span>;</div><div class="line">          passed = !!fn.call(context, <span class="keyword">this</span>[k], k, <span class="keyword">this</span>);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> passed;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="some"><a href="#some" class="headerlink" title="some()"></a>some()</h4><blockquote>
+<p><code>some()</code>可以检测数组中是否有<strong>某一项</strong>符合条件</p>
+</blockquote>
+<p>使用for：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* </span></div><div class="line">* 是否存在小于0的项</div><div class="line">*/</div><div class="line"><span class="keyword">var</span> ary = [<span class="number">12</span>,<span class="number">23</span>,<span class="number">-24</span>,<span class="number">42</span>,<span class="number">1</span>];</div><div class="line"><span class="keyword">var</span> result = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; ary.length; i++) &#123;</div><div class="line">    <span class="keyword">if</span>(ary[i] &lt; <span class="number">0</span>)&#123;</div><div class="line">       <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//只需满足一个</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(result())  <span class="comment">//有一项小于0，返回true</span></div></pre></td></tr></table></figure>
+<p>使用some:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ary = [<span class="number">12</span>,<span class="number">23</span>,<span class="number">-24</span>,<span class="number">42</span>,<span class="number">1</span>];</div><div class="line"><span class="keyword">var</span> result = ary.some(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> item &lt; <span class="number">0</span></div><div class="line">&#125;)</div><div class="line"><span class="built_in">console</span>.log(result)</div></pre></td></tr></table></figure>
+<p>兼容性处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.some != <span class="string">"function"</span>) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.some = <span class="function"><span class="keyword">function</span> (<span class="params">fn, context</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> passed = <span class="literal">false</span>;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">"function"</span>) &#123;</div><div class="line">   	  <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>, length = <span class="keyword">this</span>.length; k &lt; length; k++) &#123;</div><div class="line">		  <span class="keyword">if</span> (passed === <span class="literal">true</span>) <span class="keyword">break</span>;</div><div class="line">		  passed = !!fn.call(context, <span class="keyword">this</span>[k], k, <span class="keyword">this</span>);</div><div class="line">	  &#125;</div><div class="line">    &#125;</div><div class="line">	<span class="keyword">return</span> passed;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="foEach"><a href="#foEach" class="headerlink" title="foEach()"></a>foEach()</h4><blockquote>
+<p><code>forEach()</code>为每个元素执行对应的方法</p>
+</blockquote>
+<p>使用for：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>];</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i= <span class="number">0</span>, l = arr.length; i&lt; l; i++)&#123;</div><div class="line">	<span class="built_in">console</span>.log(arr[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用forEach:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>];</div><div class="line"></div><div class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(item);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h4><blockquote>
+<p><code>map()</code>对数组的每个元素进行一定操作<strong>（映射）</strong>后，会<strong>返回一个新的数组</strong>，<code>map()</code>是<u>处理服务器返回数据时是一个非常实用的函数。</u></p>
+</blockquote>
+<p>使用for:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oldArr = [&#123;<span class="attr">first_name</span>:<span class="string">"Colin"</span>,<span class="attr">last_name</span>:<span class="string">"Toh"</span>&#125;,&#123;<span class="attr">first_name</span>:<span class="string">"Addy"</span>,<span class="attr">last_name</span>:<span class="string">"Osmani"</span>&#125;,&#123;<span class="attr">first_name</span>:<span class="string">"Yehuda"</span>,<span class="attr">last_name</span>:<span class="string">"Katz"</span>&#125;];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNewArr</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> newArr = [];</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i= <span class="number">0</span>, l = oldArr.length; i&lt; l; i++)&#123;</div><div class="line">    <span class="keyword">var</span> item = oldArr[i];</div><div class="line">    item.full_name = [item.first_name,item.last_name].join(<span class="string">" "</span>);</div><div class="line">    newArr[i] = item;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(getNewArr());</div></pre></td></tr></table></figure>
+<p>使用map:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oldArr = [&#123;<span class="attr">first_name</span>:<span class="string">"Colin"</span>,<span class="attr">last_name</span>:<span class="string">"Toh"</span>&#125;,&#123;<span class="attr">first_name</span>:<span class="string">"Addy"</span>,<span class="attr">last_name</span>:<span class="string">"Osmani"</span>&#125;,&#123;<span class="attr">first_name</span>:<span class="string">"Yehuda"</span>,<span class="attr">last_name</span>:<span class="string">"Katz"</span>&#125;];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNewArr</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> oldArr.map(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>)</span>&#123;</div><div class="line">    item.full_name = [item.first_name,item.last_name].join(<span class="string">" "</span>);</div><div class="line">    <span class="keyword">return</span> item;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(getNewArr());</div></pre></td></tr></table></figure>
+<p>兼容性处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.map != <span class="string">"function"</span>) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.map = <span class="function"><span class="keyword">function</span> (<span class="params">fn, context</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">"function"</span>) &#123;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>, length = <span class="keyword">this</span>.length; k &lt; length; k++) &#123;      </div><div class="line">         arr.push(fn.call(context, <span class="keyword">this</span>[k], k, <span class="keyword">this</span>));</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h4><blockquote>
+<p><code>filter()</code> 筛选出数组中符合条件的项，并组成新数组。</p>
+</blockquote>
+<p>使用for:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [</div><div class="line">  &#123;<span class="string">"name"</span>:<span class="string">"apple"</span>, <span class="string">"count"</span>: <span class="number">2</span>&#125;,</div><div class="line">  &#123;<span class="string">"name"</span>:<span class="string">"orange"</span>, <span class="string">"count"</span>: <span class="number">5</span>&#125;,</div><div class="line">  &#123;<span class="string">"name"</span>:<span class="string">"pear"</span>, <span class="string">"count"</span>: <span class="number">3</span>&#125;,</div><div class="line">  &#123;<span class="string">"name"</span>:<span class="string">"orange"</span>, <span class="string">"count"</span>: <span class="number">16</span>&#125;,</div><div class="line">];</div><div class="line"><span class="keyword">var</span> newArr = [];</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i= <span class="number">0</span>, l = arr.length; i&lt; l; i++)&#123;</div><div class="line">  <span class="keyword">if</span>(arr[i].name === <span class="string">"orange"</span> )&#123;</div><div class="line">    newArr.push(arr[i]);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"Filter results:"</span>,newArr);</div></pre></td></tr></table></figure>
+<p>使用filter():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [</div><div class="line">  &#123;<span class="string">"name"</span>:<span class="string">"apple"</span>, <span class="string">"count"</span>: <span class="number">2</span>&#125;,</div><div class="line">  &#123;<span class="string">"name"</span>:<span class="string">"orange"</span>, <span class="string">"count"</span>: <span class="number">5</span>&#125;,</div><div class="line">  &#123;<span class="string">"name"</span>:<span class="string">"pear"</span>, <span class="string">"count"</span>: <span class="number">3</span>&#125;,</div><div class="line">  &#123;<span class="string">"name"</span>:<span class="string">"orange"</span>, <span class="string">"count"</span>: <span class="number">16</span>&#125;,</div><div class="line">];</div><div class="line"><span class="keyword">var</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> item.name === <span class="string">"orange"</span>;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"Filter results:"</span>,newArr);</div></pre></td></tr></table></figure>
+<p>兼容性处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.filter != <span class="string">"function"</span>) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.filter = <span class="function"><span class="keyword">function</span> (<span class="params">fn, context</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">"function"</span>) &#123;</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>, length = <span class="keyword">this</span>.length; k &lt; length; k++) &#123;</div><div class="line">          fn.call(context, <span class="keyword">this</span>[k], k, <span class="keyword">this</span>) &amp;&amp; arr.push(<span class="keyword">this</span>[k]);</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h4><blockquote>
+<p><code>reduce()</code>可以实现一个累加器的功能，让数组中的前项和后项做某种计算，并累计最终值。</p>
+</blockquote>
+<p><strong>语法</strong>: <code>array.reduce(callbackfn[, initialValue])</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">参数</th>
+<th style="text-align:left">定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><em>array</em></td>
+<td style="text-align:left">必需。一个数组对象</td>
+</tr>
+<tr>
+<td style="text-align:right"><em>callbackfn</em></td>
+<td style="text-align:left">必需。一个接受最多四个参数的函数。对于数组中的每个元素，<strong>reduce</strong> 方法都会调用 <em>callbackfn</em> 函数一次。</td>
+</tr>
+<tr>
+<td style="text-align:right"><em>initialValue</em></td>
+<td style="text-align:left">可选。如果指定 <em>initialValue</em>，则它将用作初始值来启动累积。第一次调用 <em>callbackfn</em> 函数会将此值作为参数而非数组值提供</td>
+</tr>
+</tbody>
+</table>
+<p>使用<code>reduce</code>计算和值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sum = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>].reduce(<span class="function"><span class="keyword">function</span> (<span class="params">previous, current, index, array</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> previous + current;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(sum); <span class="comment">// 10</span></div><div class="line"></div><div class="line"><span class="comment">/* </span></div><div class="line">1. 因为initialValue不存在，因此一开始的previous值等于数组的第一个元素。</div><div class="line">2. 从而current值在第一次调用的时候就是2.</div><div class="line">3. 最后两个参数为索引值index以及数组本身array.</div><div class="line"></div><div class="line">---------------------------</div><div class="line">以下位迭代过程演示代码*/</div><div class="line"></div><div class="line"><span class="comment">// 初始设置</span></div><div class="line">previous = initialValue = <span class="number">1</span>, current = <span class="number">2</span></div><div class="line"></div><div class="line"><span class="comment">// 第一次迭代</span></div><div class="line">previous = (<span class="number">1</span> + <span class="number">2</span>) =  <span class="number">3</span>, current = <span class="number">3</span></div><div class="line"></div><div class="line"><span class="comment">// 第二次迭代</span></div><div class="line">previous = (<span class="number">3</span> + <span class="number">3</span>) =  <span class="number">6</span>, current = <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment">// 第三次迭代</span></div><div class="line">previous = (<span class="number">6</span> + <span class="number">4</span>) =  <span class="number">10</span>, current = <span class="literal">undefined</span>  <span class="comment">//(退出)</span></div></pre></td></tr></table></figure>
+<p>使用<code>reduce</code>实现二维数组扁平化:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> matrix = [</div><div class="line">  [<span class="number">1</span>, <span class="number">2</span>],</div><div class="line">  [<span class="number">3</span>, <span class="number">4</span>],</div><div class="line">  [<span class="number">5</span>, <span class="number">6</span>]</div><div class="line">];</div><div class="line"></div><div class="line"><span class="comment">// 二维数组扁平化</span></div><div class="line"><span class="keyword">var</span> flatten = matrix.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">previous, current</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> previous.concat(current);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(flatten); <span class="comment">// [1, 2, 3, 4, 5, 6]</span></div></pre></td></tr></table></figure>
+<p>兼容性处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.reduce != <span class="string">"function"</span>) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.reduce = <span class="function"><span class="keyword">function</span> (<span class="params">callback, initialValue </span>) </span>&#123;</div><div class="line">     <span class="keyword">var</span> previous = initialValue, k = <span class="number">0</span>, length = <span class="keyword">this</span>.length;</div><div class="line">     <span class="keyword">if</span> (<span class="keyword">typeof</span> initialValue === <span class="string">"undefined"</span>) &#123;</div><div class="line">        previous = <span class="keyword">this</span>[<span class="number">0</span>];</div><div class="line">        k = <span class="number">1</span>;</div><div class="line">     &#125;</div><div class="line">     </div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> callback === <span class="string">"function"</span>) &#123;</div><div class="line">      <span class="keyword">for</span> (k; k &lt; length; k++) &#123;</div><div class="line">         <span class="keyword">this</span>.hasOwnProperty(k) &amp;&amp; (previous = callback(previous, <span class="keyword">this</span>[k], k, <span class="keyword">this</span>));</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> previous;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="reduceRight"><a href="#reduceRight" class="headerlink" title="reduceRight()"></a>reduceRight()</h4><blockquote>
+<p>和<code>reduce()</code>方法的语法一样，但是是从末位<code>arr.length-1</code>开始计算</p>
+</blockquote>
+<p><strong>语法</strong>: <code>array.reduceRight(callbackfn[, initialValue])</code></p>
+<p>reduceRight计算递减</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</div><div class="line"><span class="keyword">var</span> specialDiff = data.reduceRight(<span class="function"><span class="keyword">function</span> (<span class="params">previous, current, index</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> previous + current;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> previous - current;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(specialDiff); <span class="comment">// 0</span></div><div class="line"></div><div class="line"><span class="comment">/*---------------------------</span></div><div class="line">以下位迭代过程演示代码*/</div><div class="line"></div><div class="line"><span class="comment">// 初始设置</span></div><div class="line">index = <span class="number">3</span>, previous = initialValue = <span class="number">4</span>, current = <span class="number">3</span></div><div class="line"></div><div class="line"><span class="comment">// 第一次迭代</span></div><div class="line">index = <span class="number">2</span>, previous = (<span class="number">4</span>- <span class="number">3</span>) = <span class="number">1</span>, current = <span class="number">2</span></div><div class="line"></div><div class="line"><span class="comment">// 第二次迭代</span></div><div class="line">index = <span class="number">1</span>, previous = (<span class="number">1</span> - <span class="number">2</span>) = <span class="number">-1</span>, current = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="comment">// 第三次迭代</span></div><div class="line">index = <span class="number">0</span>, previous = (<span class="number">-1</span> + <span class="number">1</span>) = <span class="number">0</span>, current = <span class="literal">undefined</span> (退出)</div></pre></td></tr></table></figure>
+<p>兼容性处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.reduceRight != <span class="string">"function"</span>) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.reduceRight = <span class="function"><span class="keyword">function</span> (<span class="params">callback, initialValue </span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> length = <span class="keyword">this</span>.length, k = length - <span class="number">1</span>, previous = initialValue;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> initialValue === <span class="string">"undefined"</span>) &#123;</div><div class="line">        previous = <span class="keyword">this</span>[length - <span class="number">1</span>];</div><div class="line">        k--;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> callback === <span class="string">"function"</span>) &#123;</div><div class="line">       <span class="keyword">for</span> (k; k &gt; <span class="number">-1</span>; k-=<span class="number">1</span>) &#123;          </div><div class="line">          <span class="keyword">this</span>.hasOwnProperty(k) &amp;&amp; (previous = callback(previous, <span class="keyword">this</span>[k], k, <span class="keyword">this</span>));</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> previous;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/3117374-28b7f4872d70d6b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="迭代方法" title="">
+                </div>
+                <div class="image-caption">迭代方法</div>
+            </figure>
+<blockquote>
+<p>参考</p>
+<ul>
+<li><a href="http://blog.csdn.net/i10630226" target="_blank" rel="external">小平果的欢乐谷</a> </li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2013/04/es5%E6%96%B0%E5%A2%9E%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/" target="_blank" rel="external">张鑫旭的博客</a> </li>
+<li><a href="https://shimo.im/doc/VXqv2bxTlOUiJJqO/" target="_blank" rel="external">石墨文档</a></li>
+</ul>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-07-02T14:46:19.000Z" itemprop="dateUpdated">2017-07-02 22:46:19</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/03/05/迭代大法好/" target="_blank" rel="external">http://kpengWang.github.io/2017/03/05/迭代大法好/</a>
+        
+    </div>
+    <footer>
+        <a href="http://kpengWang.github.io">
+            <img src="/img/head.jpg" alt="白夜">
+            白夜
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js技巧/">js技巧</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/03/05/迭代大法好/&title=《迭代大法好》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/03/05/迭代大法好/&title=《迭代大法好》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/03/05/迭代大法好/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《迭代大法好》 — 白夜的博客&url=http://kpengWang.github.io/2017/03/05/迭代大法好/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/03/05/迭代大法好/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/05/Vue1.x仿饿了么笔记/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue1.x仿饿了么笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/05/继承大法好/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">继承大法好</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://kpengWang.github.io/2017/03/05/迭代大法好/index.html',
+        sourceId: '迭代大法好',
+        productKey: 'b9f52fc636224e8b93d9c1ed3db6c5a0',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        嗯，请简单粗暴地爱我~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!--<div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>-->
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>Yesterday U Said Tomorrow</span>
+            <span>白夜 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/03/05/迭代大法好/&title=《迭代大法好》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/03/05/迭代大法好/&title=《迭代大法好》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/03/05/迭代大法好/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《迭代大法好》 — 白夜的博客&url=http://kpengWang.github.io/2017/03/05/迭代大法好/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/03/05/迭代大法好/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kpengWang.github.io/2017/03/05/迭代大法好/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

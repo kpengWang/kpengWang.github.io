@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?dd5caa4e0169ff7ed21c4cdc78710602"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>You Don&#39;t Need jQuery | 白夜的博客 | 进击的前端 | 学习笔记以及开源分享 | 身体和灵魂总得有一样在路上前行。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="jQuery">
+    <meta name="description" content="前端发展很快，现代浏览器原生API已经足够好用。我们并不需要为了操作DOM、Event等再学习Jquery的API。同时由于React、Angular、Vue等框架的流行，直接操作DOM不再是好的模式，jQuery使用场景大大减少。本项目总结了大部分jQuery API替代的方法，暂时只支持IE10+以上的浏览器。
+1. Query Selector常用的class、ID、属性选择器都可以使用do">
+<meta property="og:type" content="article">
+<meta property="og:title" content="You Don't Need jQuery">
+<meta property="og:url" content="http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/index.html">
+<meta property="og:site_name" content="白夜的博客">
+<meta property="og:description" content="前端发展很快，现代浏览器原生API已经足够好用。我们并不需要为了操作DOM、Event等再学习Jquery的API。同时由于React、Angular、Vue等框架的流行，直接操作DOM不再是好的模式，jQuery使用场景大大减少。本项目总结了大部分jQuery API替代的方法，暂时只支持IE10+以上的浏览器。
+1. Query Selector常用的class、ID、属性选择器都可以使用do">
+<meta property="og:updated_time" content="2017-08-09T10:10:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="You Don't Need jQuery">
+<meta name="twitter:description" content="前端发展很快，现代浏览器原生API已经足够好用。我们并不需要为了操作DOM、Event等再学习Jquery的API。同时由于React、Angular、Vue等框架的流行，直接操作DOM不再是好的模式，jQuery使用场景大大减少。本项目总结了大部分jQuery API替代的方法，暂时只支持IE10+以上的浏览器。
+1. Query Selector常用的class、ID、属性选择器都可以使用do">
+    
+        <link rel="alternate" type="application/atom+xml" title="白夜的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">白夜</h5>
+          <a href="mailto:417940197@qq.com" title="417940197@qq.com" class="mail">417940197@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kpengWang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.facebook.com/kpeng1011" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">You Don&#39;t Need jQuery</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">You Don&#39;t Need jQuery</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-02T14:52:00.000Z" itemprop="datePublished" class="page-time">
+  2017-01-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Query-Selector"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Query Selector</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-CSS-amp-Style"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.  CSS & Style</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-DOM-Manipulation"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. DOM Manipulation</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Ajax"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. Ajax</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Events"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. Events</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-You Don&#39;t Need jQuery"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">You Don't Need jQuery</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-01-02 22:52:00" datetime="2017-01-02T14:52:00.000Z"  itemprop="datePublished">2017-01-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>前端发展很快，现代浏览器原生API已经足够好用。我们并不需要为了操作DOM、Event等再学习Jquery的API。同时由于React、Angular、Vue等框架的流行，直接操作DOM不再是好的模式，jQuery使用场景大大减少。本项目总结了大部分jQuery API替代的方法，暂时只支持IE10+以上的浏览器。</p>
+<h2 id="1-Query-Selector"><a href="#1-Query-Selector" class="headerlink" title="1. Query Selector"></a>1. Query Selector</h2><p>常用的class、ID、属性选择器都可以使用<code>document.querySelector</code>或者 <code>document.querySelecorAll</code>替代。区别是：</p>
+<ul>
+<li><code>document.querySelector</code>返回第一个匹配的Element</li>
+<li><code>document.querySelectorAll</code>返回所有匹配的Element组成的NodeList。它可以通过<code>[].slice.call()</code>把它转成Array</li>
+<li>如果匹配不到任何Element，jQuery返回空数组<code>[]</code>，但<code>document.querySelectorAll</code>返回<code>null</code>，注意空指针异常。当找不到时，也可以试用<code>||</code>设置默认值，如<code>document.querySelectotAll(selector)||[]</code></li>
+</ul>
+<blockquote>
+<p>注意: <code>document.querySelector</code>和<code>document.querySelectorAll</code>性能很差，尽量使用<code>document.getElementById</code>、<code>document.getElementsByClassName</code>或者<code>document.getElementsByTagName</code>。</p>
+</blockquote>
+<ul>
+<li><strong>1.0. Query by  selector</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//jQuery</span></div><div class="line"> $(<span class="string">'selector'</span>)</div><div class="line"></div><div class="line"> <span class="comment">//Native</span></div><div class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'selector'</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>1.1 Qeury by  class</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//jQuery</span></div><div class="line">$(<span class="string">'.css'</span>)</div><div class="line"></div><div class="line"> <span class="comment">//Native</span></div><div class="line"> <span class="built_in">document</span>.getElementsByClassName(<span class="string">'selector'</span>);</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><strong>1.2 Qeury by  id`</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//jQuery</span></div><div class="line">$(<span class="string">'#id'</span>)</div><div class="line"></div><div class="line"> <span class="comment">//Native</span></div><div class="line"> <span class="built_in">document</span>.getElementById(<span class="string">'id'</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>1.3 Query by attribute</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> // jQuery</div><div class="line">$(&apos;a[target=_blank]&apos;);</div><div class="line"></div><div class="line">//Native </div><div class="line">document.querySelector(&apos;a[target= _blank]&apos;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>1.4 Find sth</strong></p>
+<ul>
+<li><p>Find nodes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">   //jQuery</div><div class="line">        $el.find(&apos;li&apos;);</div><div class="line"></div><div class="line">     //Native</div><div class="line">     el.querySelector(&apos;li&apos;)   </div><div class="line">     ```  </div><div class="line"></div><div class="line">-   Find body</div><div class="line">     ````javascript</div><div class="line">   //jQuery</div><div class="line">     $(&apos;body&apos;);</div><div class="line"></div><div class="line">     //Native</div><div class="line">     document.body;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Find Attribute</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//jQuery</div><div class="line">  $el.attr(&apos;foo&apos;);</div><div class="line"></div><div class="line">  //Native</div><div class="line">  e.getAttribute(&apos;foo&apos;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>1.5 Sibling/Previous/Next Elements</strong></p>
+<ul>
+<li><p>Sibling elements</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//jQuery</div><div class="line">$el.sibglings();</div><div class="line"></div><div class="line">//Navtive</div><div class="line">[].filter.call(el.parentNode.children,function(child)&#123;</div><div class="line">    return child!==el;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Previous elements</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"> //jQuery</div><div class="line"> $el.prev();</div><div class="line"> </div><div class="line"> //Navtive</div><div class="line">el.previousElementSibling;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Next elements</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"> //jQuery</div><div class="line"> $el.next();</div><div class="line"> </div><div class="line"> //Navtive</div><div class="line">el.nextElementSibling;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>1.6 Closest</strong><br>Closest获得匹配选择器的第一个祖先元素，从当前元素开始沿DOM树向上。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">   </div><div class="line">   //jQuery</div><div class="line">   $el.closest(queryString);</div><div class="line">   </div><div class="line">   //Navtive</div><div class="line">function closest(el, selector) &#123;</div><div class="line">           const machesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;</div><div class="line">           while (el)</div><div class="line">               if (matchesSelector.call(el, selector)) &#123;</div><div class="line">                   return el;</div><div class="line">               &#125; else &#123;</div><div class="line">                   el = el.parentElement;</div><div class="line">               &#125;</div><div class="line">       &#125;</div><div class="line">       return null;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>1.7 Parents Until</strong></li>
+</ul>
+<p>获取当前每一个元素匹配元素集的祖先，不包括元素本身</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//jQuery</div><div class="line">$el.parentsUntil(selector,filter);</div><div class="line"></div><div class="line">//Native</div><div class="line">function parentUntil(el, selector, filter) &#123;</div><div class="line">        const result = [];</div><div class="line">        const matchesSelector = el.matchesSelector || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;</div><div class="line">        //match start from parent</div><div class="line">        el = el.parentElement;</div><div class="line">        while (el &amp;&amp; !matchesSelector.call(el, selector)) &#123;</div><div class="line">            if (!filter) &#123;</div><div class="line">                result.push(el);</div><div class="line">            &#125; else &#123;</div><div class="line">                if (matchesSelector.call(el, filter)) &#123;</div><div class="line">                    result.push(el);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            el = el.parentElement;</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><p><strong>1.8 Form</strong></p>
+<ul>
+<li><p>Input/Textarea</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//jQuery</div><div class="line">$(&apos;#my-input&apos;).val();</div><div class="line"></div><div class="line">//Native</div><div class="line">document.querySelector(&apos;#my-input&apos;).value;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>Get index of e.currentTarget between <code>.radio</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> //jQuery</div><div class="line">$(e.currentTarget).index(&apos;.radio&apos;);</div><div class="line"> </div><div class="line"> //Native</div><div class="line">[].indexOf.call(document.querySelectorAll(&apos;.radio&apos;),e.currentTarget);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>1.9  Iframe Contents</strong><br>jQuery 对象的iframe <code>contents</code>返回的是iframe内的document</p>
+<ul>
+<li><p>Iframe contents</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$iframe.contents();</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line">iframe.contentDocument;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-CSS-amp-Style"><a href="#2-CSS-amp-Style" class="headerlink" title="2.  CSS &amp; Style"></a>2.  CSS &amp; Style</h2><ul>
+<li><p><strong>2.1 CSS</strong></p>
+<ul>
+<li>Get Style</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">      //jQuery    </div><div class="line">     $el.css(&quot;color&quot;);</div><div class="line">     </div><div class="line">     //Native</div><div class="line">     //注意:此处为了解当style值为auto时，返回auto的问题</div><div class="line">     const win = el.ownerDocument.defaultView;</div><div class="line">     win.getComputedStyle(el,null).color;    </div><div class="line">    ```     </div><div class="line">-------------</div><div class="line">   - Set Style</div><div class="line"></div><div class="line">    ````javascript</div><div class="line">     //jQuery    </div><div class="line">     $el.css(color:&quot;#f01&quot;);</div><div class="line">     </div><div class="line">     //Native</div><div class="line">     el.style.color= &apos;#f01&apos;;</div><div class="line">    ```     </div><div class="line">    ------</div><div class="line">      - Get/Set Styles</div><div class="line"></div><div class="line">    注意，如果想一次设置多个style，可参考oui-dom-utils中[setStyle](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194)方法</div><div class="line">    </div><div class="line">  *   Add class</div><div class="line"></div><div class="line">     ````javascript</div><div class="line">    //jQuery    </div><div class="line">     $el.addClass(className);</div><div class="line">         </div><div class="line">     //Native</div><div class="line">     el.classList.add(className);        </div><div class="line">    ```     </div><div class="line">  *   Remove class</div><div class="line"></div><div class="line">     ````javascript</div><div class="line">    //jQuery    </div><div class="line">     $el.removeClass(className);</div><div class="line">         </div><div class="line">     //Native</div><div class="line">     el.classList.remove(className);        </div><div class="line">    ```     </div><div class="line"> *   has class</div><div class="line"></div><div class="line">     ````javascript</div><div class="line">    //jQuery    </div><div class="line">     $el.hasClass(className);</div><div class="line">         </div><div class="line">     //Native</div><div class="line">     el.classList.contains(className);        </div><div class="line">    ```     </div><div class="line"> *   Toggle class</div><div class="line"></div><div class="line">     ````javascript</div><div class="line">    //jQuery    </div><div class="line">     $el.toggleClass(className);</div><div class="line">         </div><div class="line">     //Native</div><div class="line">     el.classList.toggle(className);        </div><div class="line">    ```     </div><div class="line">-----------</div><div class="line">+  **2.2 Width &amp; Height**</div><div class="line">   Width 与Height 获取方法相同，下面 以Height 为例：</div><div class="line">   -  Window height</div><div class="line"></div><div class="line">      ```javascript</div><div class="line">        //jQuery</div><div class="line">        $(window).height();</div><div class="line"></div><div class="line">        //Native</div><div class="line">       //不含scrollbar，与jQuery行为一致</div><div class="line">        window.document.documentElement.clientHeihgt;</div><div class="line">        //包含scrollbar</div><div class="line">        window.innerHeihgt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>Document height</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$(<span class="built_in">document</span>).height();</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line"><span class="built_in">document</span>.documentElement.scrollHeihgt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Element height</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">    <span class="comment">//jQuery</span></div><div class="line">    $el.height();</div><div class="line"></div><div class="line">    <span class="comment">//Native</span></div><div class="line">   <span class="comment">//与jQuery一致（都为content区域的高度）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHeight</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.getComputedStyle(el);</div><div class="line">    <span class="keyword">const</span> height = el.offsetHeight;</div><div class="line">    <span class="keyword">const</span> borderTopWidth = <span class="built_in">parseFloat</span>(styles.borderTopWidth);</div><div class="line">    <span class="keyword">const</span> borderBottomWidth = <span class="built_in">parseFloat</span>(styles.borderBottomWidth);</div><div class="line">    <span class="keyword">const</span> paddingTop = <span class="built_in">parseFloat</span>(styles.paddingTop);</div><div class="line">    <span class="keyword">const</span> paddingBottom = <span class="built_in">parseFloat</span>(style.paddingBottom);</div><div class="line">    <span class="keyword">return</span> height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;</div><div class="line">&#125;</div><div class="line"><span class="comment">//精确整数（border-box时为height值，content-box时为height+padding+ border值）</span></div><div class="line">el.clientHeight;</div><div class="line"><span class="comment">//精确到小数(border-box时为height值，content-box时为height+padding+ border值）</span></div><div class="line">el.getBoundingClientRect().height;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Iframe height</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//jQuery</span></div><div class="line"> $(<span class="string">'iframe'</span>).contents().height();</div><div class="line"></div><div class="line"> <span class="comment">//Native</span></div><div class="line">iframe.contentDocument.documentElment.scrollHeihgt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>2.3  Position &amp;  Offset</strong></p>
+<ul>
+<li><p>Position</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery  </span></div><div class="line">  $el.position();</div><div class="line">  </div><div class="line">  <span class="comment">// Native</span></div><div class="line">&#123;<span class="attr">left</span>:el.offsetLeft,<span class="attr">top</span>:el.offsetTop&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>Offset</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery  </span></div><div class="line">  $el.offset();</div><div class="line">  </div><div class="line">  <span class="comment">// Native</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getOffset</span>(<span class="params">el</span>)</span>&#123;</div><div class="line">    <span class="keyword">const</span> box = el.getBoundingClientRect();</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">top</span>:box.top+windows.pageYoffset - <span class="built_in">document</span>.documentElement.clientTop;</div><div class="line">            left:box.left+windows.oageXoffset - <span class="built_in">document</span>.documentElement.clientLeft;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>2.4  Scroll Top</strong></p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$(<span class="built_in">window</span>).scrollTop();</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line">(<span class="built_in">document</span>.documentElemtent &amp;&amp; <span class="built_in">document</span>.documentElement.scrollTop) || <span class="built_in">document</span>.body.scrollTop;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-DOM-Manipulation"><a href="#3-DOM-Manipulation" class="headerlink" title="3. DOM Manipulation"></a>3. DOM Manipulation</h2><ul>
+<li><p><strong>3.1  Remove</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">//jQuery</span></div><div class="line">$el.remove();</div><div class="line"></div><div class="line">    <span class="comment">//Native</span></div><div class="line">el.parentNode.removeChild(el);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>3.2  Text</strong></p>
+<ul>
+<li><p>Get text</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">//jQuery</span></div><div class="line">$el.text();</div><div class="line"></div><div class="line">    <span class="comment">//Native</span></div><div class="line">el.textContent;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Set text</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">//jQuery</span></div><div class="line">$el.text(string);</div><div class="line"></div><div class="line">    <span class="comment">//Native</span></div><div class="line">el.textContent=string;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>3.3  HTML</strong></p>
+<ul>
+<li><p>Get HTML</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">//jQuery</span></div><div class="line">$el.html();</div><div class="line"></div><div class="line">    <span class="comment">//Native</span></div><div class="line">el.innerHTML;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Set HTML</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">    </div><div class="line">        <span class="comment">//jQuery</span></div><div class="line">    $el.html(htmlString);</div><div class="line">    </div><div class="line">        <span class="comment">//Native</span></div><div class="line">    el.innerHTML=htmlString;</div><div class="line"></div><div class="line">+  **<span class="number">3.4</span>  Append**</div><div class="line">    Append 插入到子节点的末尾</div><div class="line">     <span class="string">``</span><span class="string">`javascript</span></div><div class="line">    //jQuery</div><div class="line">    $el.append("&lt;div id= 'container'&gt;hello&lt;/div&gt;");</div><div class="line">    </div><div class="line">    //Native</div><div class="line">    let newEl =  document.createElement('div');</div><div class="line">    newEl.setAttribute('id','container');</div><div class="line">    newEl.innerHTML='hello';</div><div class="line">    el.appendChild(newEl);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>3.5  Prepend</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//jQuery</div><div class="line">$el.prepend("&lt;div id='container'&gt;&lt;/div&gt;");</div><div class="line"></div><div class="line"> //Native</div><div class="line">let newEl = document.createElement('div');</div><div class="line">newEl.setAttribute('id','container);</div><div class="line">newEl.innerHTML = 'hello';</div><div class="line">el.inserBefore(newEl,el.firstChild);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>3.6  insertBefore</strong><br>在选中元素前插入新节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$el.insertBefore(queryString);</div><div class="line"></div><div class="line"> <span class="comment">//Native</span></div><div class="line"><span class="keyword">const</span> target = <span class="built_in">document</span>.querySelector(queryString);</div><div class="line">target.parentNode.insertBefore(newEl,target);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>3.7 insertAfter</strong><br>在选中元素后插入新节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$el.insertAfter(queryString);</div><div class="line"></div><div class="line"> <span class="comment">//Native</span></div><div class="line"><span class="keyword">const</span> target = <span class="built_in">document</span>.querySelector(queryString);</div><div class="line">target.parentNode.insertBefore(newEl,nextSibling);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="4-Ajax"><a href="#4-Ajax" class="headerlink" title="4. Ajax"></a>4. Ajax</h2><p>用<a href="https://github.com/camsong/fetch-ie8" target="_blank" rel="external">fetch</a>和<a href="https://github.com/camsong/fetch-jsonp" target="_blank" rel="external">fetch-jsonp</a>替代。</p>
+<h2 id="5-Events"><a href="#5-Events" class="headerlink" title="5. Events"></a>5. Events</h2><p>完整的替代命名空间和事件代理，连接到<a href="https://github.com/oneuijs/oui-dom-events" target="_blank" rel="external">oui-dom-events</a>。</p>
+<ul>
+<li><p><strong>5.1  Bind an event width on</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$el.on(eventName,eventHandler);</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line">el.addEventListener(eventName,eventHandler);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>5.2  Unbind an event width off</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$el.off(eventName,eventHandler);</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line">el.removeEventListener(eventName,eventHandler);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>5.3  Trigger</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$el.trigger(<span class="string">'custom-event'</span>,&#123;<span class="attr">key1</span>:<span class="string">'data'</span>&#125;);</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.CustomEvent)&#123;</div><div class="line">    <span class="keyword">const</span> event = <span class="keyword">new</span> CustomEvent(<span class="string">'custom-event'</span>,&#123;<span class="attr">detail</span>:&#123;<span class="attr">key1</span>:<span class="string">'data'</span>&#125;&#125;);</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="keyword">const</span> event = <span class="built_in">document</span>.createEvent(<span class="string">'CustomEvent'</span>);</div><div class="line">    event.initCustomEvent(<span class="string">'custom-event'</span>,<span class="literal">true</span>,<span class="literal">true</span>,&#123;<span class="attr">key1</span>:<span class="string">'data'</span>&#125;);</div><div class="line">&#125;</div><div class="line">el.dispatchEvent(event);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>##6. Utilities</p>
+<ul>
+<li><p><strong>6.1  isArray</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$.isArray(range);</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line">Arrary.isArray(range);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>6.2  Trim</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$.trim(string);</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line">string.trim();</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>6.3  Object Assign</strong><br>继承，实用<a href="https://github.com/ljharb/object.assign" target="_blank" rel="external">object.assign polyfill</a></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery</span></div><div class="line">$.extend(&#123;&#125;,defaltOpts,opts);</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line"><span class="built_in">Object</span>.assign(&#123;&#125;,defaultOpts,opts);</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>6.4  Contains</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//jQuery</span></div><div class="line">$.contains(el,child);</div><div class="line"></div><div class="line"><span class="comment">//Native</span></div><div class="line">el !== child &amp;&amp; el.contains(child);</div></pre></td></tr></table></figure>
+<p>##7.Alternatives</p>
+<ul>
+<li><a href="http://youmightnotneedjquery.com/" target="_blank" rel="external">你可能不需要jQuery(You Might Not Need jQuery)</a> -如何使用原生JavaScript实现通用事件，元素，Ajax等用法。</li>
+<li><a href="https://github.com/npm-dom" target="_blank" rel="external">npm-dom</a>以及<a href="https://github.com/webmodules" target="_blank" rel="external">webmodules</a> -在NPM上提供独立DOM模块的组织。</li>
+</ul>
+<blockquote>
+<p>本文章摘抄自  OneUI 的<a href="https://github.com/oneuijs/You-Dont-Need-jQuery/blob/master/README.zh-CN.md" target="_blank" rel="external">Github项目You-Dont-Need-jQuery</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-08-09T10:10:27.000Z" itemprop="dateUpdated">2017-08-09 18:10:27</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/01/02/You Don&#39;t Need jQuery/" target="_blank" rel="external">http://kpengWang.github.io/2017/01/02/You Don&#39;t Need jQuery/</a>
+        
+    </div>
+    <footer>
+        <a href="http://kpengWang.github.io">
+            <img src="/img/head.jpg" alt="白夜">
+            白夜
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/&title=《You Don't Need jQuery》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/&title=《You Don't Need jQuery》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《You Don't Need jQuery》 — 白夜的博客&url=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/04/Webpack基本配置/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Webpack基本配置</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/index.html',
+        sourceId: 'You Don't Need jQuery',
+        productKey: 'b9f52fc636224e8b93d9c1ed3db6c5a0',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        嗯，请简单粗暴地爱我~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!--<div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>-->
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>Yesterday U Said Tomorrow</span>
+            <span>白夜 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/&title=《You Don't Need jQuery》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/&title=《You Don't Need jQuery》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《You Don't Need jQuery》 — 白夜的博客&url=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kpengWang.github.io/2017/01/02/You Don't Need jQuery/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
