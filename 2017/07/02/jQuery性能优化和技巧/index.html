@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?dd5caa4e0169ff7ed21c4cdc78710602"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>jQuery性能优化和技巧 | 白夜的博客 | 进击的前端 | 学习笔记以及开源分享 | 身体和灵魂总得有一样在路上前行。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="jQuery,锋利的jQuery,读书笔记">
+    <meta name="description" content="使用最新版本jQueryjQuery每一个新的版本都会较上一个版本进行Bug修复和一些优化，同时也会包含一些创新，所以建议使用最新版本的jQuery来提高性能。不过需要注意和补充的是，已建项目不要轻易的更换版本，毕竟有时候新版本不完全是向后兼容的。
+使用合适的选择器$(&amp;quot;#id&amp;quot;)使用id定位DOM元素无疑是最佳性能的方式，因为jQuery底层将直接调用原生方法document">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery性能优化和技巧">
+<meta property="og:url" content="http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/index.html">
+<meta property="og:site_name" content="白夜的博客">
+<meta property="og:description" content="使用最新版本jQueryjQuery每一个新的版本都会较上一个版本进行Bug修复和一些优化，同时也会包含一些创新，所以建议使用最新版本的jQuery来提高性能。不过需要注意和补充的是，已建项目不要轻易的更换版本，毕竟有时候新版本不完全是向后兼容的。
+使用合适的选择器$(&amp;quot;#id&amp;quot;)使用id定位DOM元素无疑是最佳性能的方式，因为jQuery底层将直接调用原生方法document">
+<meta property="og:updated_time" content="2017-07-02T14:59:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery性能优化和技巧">
+<meta name="twitter:description" content="使用最新版本jQueryjQuery每一个新的版本都会较上一个版本进行Bug修复和一些优化，同时也会包含一些创新，所以建议使用最新版本的jQuery来提高性能。不过需要注意和补充的是，已建项目不要轻易的更换版本，毕竟有时候新版本不完全是向后兼容的。
+使用合适的选择器$(&amp;quot;#id&amp;quot;)使用id定位DOM元素无疑是最佳性能的方式，因为jQuery底层将直接调用原生方法document">
+    
+        <link rel="alternate" type="application/atom+xml" title="白夜的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">白夜</h5>
+          <a href="mailto:417940197@qq.com" title="417940197@qq.com" class="mail">417940197@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kpengWang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.facebook.com/kpeng1011" target="_blank" >
+                <i class="icon icon-lg icon-facebook"></i>
+                Facebook
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">jQuery性能优化和技巧</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">jQuery性能优化和技巧</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-02T14:48:00.000Z" itemprop="datePublished" class="page-time">
+  2017-07-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用最新版本jQuery"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用最新版本jQuery</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用合适的选择器"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用合适的选择器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#quot-id-quot"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">$("#id")</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#quot-div-quot"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">$("div")</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#quot-class-quot"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">$(".class")</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#缓存对象"><span class="post-toc-number">3.</span> <span class="post-toc-text">缓存对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#循环时的DOM操作"><span class="post-toc-number">4.</span> <span class="post-toc-text">循环时的DOM操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数组方式使用jQuery对象"><span class="post-toc-number">5.</span> <span class="post-toc-text">数组方式使用jQuery对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#事件委托"><span class="post-toc-number">6.</span> <span class="post-toc-text">事件委托</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用join-来拼接长字符串"><span class="post-toc-number">7.</span> <span class="post-toc-text">使用join()来拼接长字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#合理的利用Data自定义属性"><span class="post-toc-number">8.</span> <span class="post-toc-text">合理的利用Data自定义属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#尽量使用原生JavaScript方法"><span class="post-toc-number">9.</span> <span class="post-toc-text">尽量使用原生JavaScript方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#造自己的jQuery插件（轮子）"><span class="post-toc-number">10.</span> <span class="post-toc-text">造自己的jQuery插件（轮子）</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-jQuery性能优化和技巧"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">jQuery性能优化和技巧</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-02 22:48:00" datetime="2017-07-02T14:48:00.000Z"  itemprop="datePublished">2017-07-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="使用最新版本jQuery"><a href="#使用最新版本jQuery" class="headerlink" title="使用最新版本jQuery"></a>使用最新版本jQuery</h3><p>jQuery每一个新的版本都会较上一个版本进行Bug修复和一些优化，同时也会包含一些创新，所以建议使用最新版本的jQuery来提高性能。不过需要注意和补充的是，已建项目<strong>不要轻易的更换版本</strong>，毕竟有时候新版本不完全是向后兼容的。</p>
+<h3 id="使用合适的选择器"><a href="#使用合适的选择器" class="headerlink" title="使用合适的选择器"></a>使用合适的选择器</h3><h4 id="quot-id-quot"><a href="#quot-id-quot" class="headerlink" title="$(&quot;#id&quot;)"></a><code>$(&quot;#id&quot;)</code></h4><p>使用id定位DOM元素无疑是最佳性能的方式，因为jQuery底层将直接调用原生方法<code>document.getElementById</code>。其次，如果id不能直接定位到所需元素，可以考虑调用<code>find()</code>方法。</p>
+<h4 id="quot-div-quot"><a href="#quot-div-quot" class="headerlink" title="$(&quot;div&quot;)"></a><code>$(&quot;div&quot;)</code></h4><p>标签选择器性能也相对不错，因为jQuery会直接调用原生方法<code>document.getElementsByTagName</code>来定位DOM元素,最好是配合<code>$(&#39;#id&#39;)</code>和<code>find()</code>方法来使用。</p>
+<h4 id="quot-class-quot"><a href="#quot-class-quot" class="headerlink" title="$(&quot;.class&quot;)"></a><code>$(&quot;.class&quot;)</code></h4><p>使用<code>class</code>来定位元素集合相对会低效一些，因为在非现代浏览器上不支持<code>document.getElementsByClassName()</code>，只能通过DOM搜索的方式来实现，所以最好也是配合<code>$(&#39;#id&#39;)</code>和<code>find()</code>方法来使用</p>
+<p>另外还有两组选择器分别是属性选择器<code>$(&quot;[attribute=value]&quot;)</code>和伪元素选择器<code>$(&quot;:hidden&quot;)</code>，因单独使用性能不理想，所以都建议使用ID选择器定位到最近的父级元素并配合<code>find()</code>方法使用。</p>
+<h3 id="缓存对象"><a href="#缓存对象" class="headerlink" title="缓存对象"></a>缓存对象</h3><p><strong>永远不要让同一个选择器出现多次</strong></p>
+<h3 id="循环时的DOM操作"><a href="#循环时的DOM操作" class="headerlink" title="循环时的DOM操作"></a>循环时的DOM操作</h3><p>每1次操作DOM的性能开销都很大，使用临时变量来存储，将DOM的操作次数降至最低。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> top_100_list=[<span class="string">'a'</span>,<span class="string">'b'</span><span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>],</div><div class="line">    listBox = $(<span class="string">'#listBox'</span>),</div><div class="line">    top_100_li=<span class="string">""</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,l=top_100_list.length;i&lt;l;i++)&#123;</div><div class="line">   top_100_li+=<span class="string">"&lt;li&gt;"</span>+top_100_list[i]+<span class="string">"&lt;/li&gt;"</span>;</div><div class="line">&#125;</div><div class="line">listBox.append(top_100_li);</div></pre></td></tr></table></figure>
+<h3 id="数组方式使用jQuery对象"><a href="#数组方式使用jQuery对象" class="headerlink" title="数组方式使用jQuery对象"></a>数组方式使用jQuery对象</h3><p>使用jQuery选择器获取结果是一个jQuery对象。然而，jQuery会让人感觉正在使用一个定义了索引和长度的数组。在性能方面，建议使用原生的<code>for()</code>或者<code>while()</code> 比  <code>each()</code>方法执行更快。</p>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><p>每一个JavaScript事件都会冒泡到父级节点。当我们需要给多个元素调用同一个事件函数时候这一点会很有用。</p>
+<blockquote>
+<p>比如我们要为一个表格绑定一个function，点击td之后，将其背景设置为红色。</p>
+</blockquote>
+<p>第一反应一般会这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#myTable td'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).css(<span class="string">'background'</span>,<span class="string">'red'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>假如有100个td，那么就绑定了100次事件</strong>，显然这将带来很大的性能负担。</p>
+<p>代替这种效率很差的多个元素事件监听的方法就是说，<strong>只需要向它的父节点绑定1次事件</strong>，然后通过<code>event.target</code>来获取到当前点击元素。使用事件委托优化之后：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#maTable'</span>).on(<span class="string">'click'</span>,<span class="string">'td'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).css(<span class="string">'background'</span>,<span class="string">'red'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="使用join-来拼接长字符串"><a href="#使用join-来拼接长字符串" class="headerlink" title="使用join()来拼接长字符串"></a>使用<code>join()</code>来拼接长字符串</h3><p>使用<code>join</code>来处理长字符串（返回渲染DOM）拼接确实有助于性能优化.</p>
+<blockquote>
+<p>创建一个数组，然后循环，使用join()把数组转为字符串</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;=<span class="number">1000</span>;i++)&#123;</div><div class="line"></div><div class="line">arr[i] =<span class="string">'&lt;li&gt;&lt;/li&gt;'</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">$(<span class="string">'#list'</span>).append(arr.join(<span class="string">""</span>));</div></pre></td></tr></table></figure>
+<h3 id="合理的利用Data自定义属性"><a href="#合理的利用Data自定义属性" class="headerlink" title="合理的利用Data自定义属性"></a>合理的利用Data自定义属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--Set--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"dl"</span> <span class="attr">data-role</span>=<span class="string">"page"</span> <span class="attr">data-last-value</span> =<span class="string">"43"</span> <span class="attr">data-options</span>=<span class="string">'&#123;"name":"jack"&#125;'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Get</span></div><div class="line"><span class="keyword">var</span> dl = $(<span class="string">'#dl'</span>);</div><div class="line">dl.data(<span class="string">"role"</span>);  <span class="comment">//"page"</span></div><div class="line">dl.data(<span class="string">"lastValue"</span>);  <span class="comment">//43</span></div><div class="line">dl.data(<span class="string">"options"</span>).name; <span class="comment">//jack</span></div></pre></td></tr></table></figure>
+<h3 id="尽量使用原生JavaScript方法"><a href="#尽量使用原生JavaScript方法" class="headerlink" title="尽量使用原生JavaScript方法"></a>尽量使用原生JavaScript方法</h3><h3 id="造自己的jQuery插件（轮子）"><a href="#造自己的jQuery插件（轮子）" class="headerlink" title="造自己的jQuery插件（轮子）"></a>造自己的jQuery插件（轮子）</h3><p>本文主要提炼于《锋利的jQuery》第二版的第11章。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-07-02T14:59:03.000Z" itemprop="dateUpdated">2017-07-02 22:59:03</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/07/02/jQuery性能优化和技巧/" target="_blank" rel="external">http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/</a>
+        
+    </div>
+    <footer>
+        <a href="http://kpengWang.github.io">
+            <img src="/img/head.jpg" alt="白夜">
+            白夜
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/锋利的jQuery/">锋利的jQuery</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/&title=《jQuery性能优化和技巧》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/&title=《jQuery性能优化和技巧》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《jQuery性能优化和技巧》 — 白夜的博客&url=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/15/初识ES6/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">初识ES6</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/16/Vue中使用slot分发内容/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue中使用slot分发内容</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/index.html',
+        sourceId: 'jQuery性能优化和技巧',
+        productKey: 'b9f52fc636224e8b93d9c1ed3db6c5a0',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        嗯，请简单粗暴地爱我~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!--<div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>-->
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>Yesterday U Said Tomorrow</span>
+            <span>白夜 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/&title=《jQuery性能优化和技巧》 — 白夜的博客&pic=http://kpengWang.github.io/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/&title=《jQuery性能优化和技巧》 — 白夜的博客&source=记录" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《jQuery性能优化和技巧》 — 白夜的博客&url=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/&via=http://kpengWang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kpengWang.github.io/2017/07/02/jQuery性能优化和技巧/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
