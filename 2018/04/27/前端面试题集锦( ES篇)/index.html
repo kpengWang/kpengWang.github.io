@@ -1,194 +1,340 @@
 <!DOCTYPE html>
-<html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-    
-
-    
-
-    
-
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
 
-    <meta charset="utf-8">
-    
-    
-    
-    
-    <title>前端面试题集锦( ES篇) | 白夜关于前端技术总结与分享 | 做一个干货满满的博客</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="面试刷题">
-    <meta name="description" content="请描述一下 JavaScript 事件冒泡机制？                                                                                             JS事件捕获与冒泡原型图               当页面中某个元素的事件被触发以后，比如点击了页面中的某个按钮，就触发了当前按钮的点击事件，但是 JavaScri">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试刷题," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白夜关于前端技术总结与分享" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="请描述一下 JavaScript 事件冒泡机制？  当页面中某个元素的事件被触发以后，比如点击了页面中的某个按钮，就触发了当前按钮的点击事件，但是 JavaScript 并不是简单就直接触发该元素的相应事件，而是会首先从 DOM 树的最顶层（window）依次的去触发目标（被直接点击的）元素所有父级的同类事件，直到触发到目标元素，然后又会再一次的从目标元素开始触发其所有父级的所有同类事件直到win">
 <meta name="keywords" content="面试刷题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端面试题集锦( ES篇)">
 <meta property="og:url" content="https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/index.html">
 <meta property="og:site_name" content="白夜关于前端技术总结与分享">
-<meta property="og:description" content="请描述一下 JavaScript 事件冒泡机制？                                                                                             JS事件捕获与冒泡原型图               当页面中某个元素的事件被触发以后，比如点击了页面中的某个按钮，就触发了当前按钮的点击事件，但是 JavaScri">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="请描述一下 JavaScript 事件冒泡机制？  当页面中某个元素的事件被触发以后，比如点击了页面中的某个按钮，就触发了当前按钮的点击事件，但是 JavaScript 并不是简单就直接触发该元素的相应事件，而是会首先从 DOM 树的最顶层（window）依次的去触发目标（被直接点击的）元素所有父级的同类事件，直到触发到目标元素，然后又会再一次的从目标元素开始触发其所有父级的所有同类事件直到win">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3117374-851c2c19c5b5a022.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2018-04-25T16:34:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试题集锦( ES篇)">
-<meta name="twitter:description" content="请描述一下 JavaScript 事件冒泡机制？                                                                                             JS事件捕获与冒泡原型图               当页面中某个元素的事件被触发以后，比如点击了页面中的某个按钮，就触发了当前按钮的点击事件，但是 JavaScri">
+<meta name="twitter:description" content="请描述一下 JavaScript 事件冒泡机制？  当页面中某个元素的事件被触发以后，比如点击了页面中的某个按钮，就触发了当前按钮的点击事件，但是 JavaScript 并不是简单就直接触发该元素的相应事件，而是会首先从 DOM 树的最顶层（window）依次的去触发目标（被直接点击的）元素所有父级的同类事件，直到触发到目标元素，然后又会再一次的从目标元素开始触发其所有父级的所有同类事件直到win">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3117374-851c2c19c5b5a022.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-    
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
-    <script>window.lazyScripts=[]</script>
 
-    <!-- custom head -->
-    
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/"/>
+
+
+
+
+
+  <title>前端面试题集锦( ES篇) | 白夜关于前端技术总结与分享</title>
+  
+
+
+
+
+
+
+
 
 </head>
 
-<body>
-    <div id="loading" class="active"></div>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-    <aside id="menu" class="hide" >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">KyleWang</h5>
-          <a href="mailto:417940197@qq.com" title="417940197@qq.com" class="mail">417940197@qq.com</a>
-        </hgroup>
-      </div>
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白夜关于前端技术总结与分享</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                Archives
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/kpengWang" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/about"  >
-                <i class="icon icon-lg icon-link"></i>
-                About
-              </a>
-            </li>
-        
-      </ul>
-    </div>
+      
+        <p class="site-subtitle">做一个干货满满的博客</p>
+      
   </div>
-</aside>
 
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">前端面试题集锦( ES篇)</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
-    </div>
-</header>
-<header class="content-header post-header">
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
-    <div class="container fade-scale">
-        <h1 class="title">前端面试题集锦( ES篇)</h1>
-        <h5 class="subtitle">
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
             
-                <time datetime="2018-04-26T17:37:20.000Z" itemprop="datePublished" class="page-time">
-  2018-04-27
-</time>
-
-
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
-        </h5>
-    </div>
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
 
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
     
 
+  
 
-</header>
+  
+  
+  
 
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/">
 
-<div class="container body-wrap">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KyleWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜关于前端技术总结与分享">
+    </span>
+
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#请描述一下-JavaScript-事件冒泡机制？"><span class="post-toc-number">1.</span> <span class="post-toc-text">请描述一下 JavaScript 事件冒泡机制？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#JavaScript-的事件流模型都有什么？"><span class="post-toc-number">2.</span> <span class="post-toc-text">JavaScript 的事件流模型都有什么？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#BOM-对象有哪些，列举-window-对象？"><span class="post-toc-number">3.</span> <span class="post-toc-text">BOM 对象有哪些，列举 window 对象？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#new操作符具体干了什么呢"><span class="post-toc-number">4.</span> <span class="post-toc-text">new操作符具体干了什么呢?</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#“-”-和-“-”-有什么不同"><span class="post-toc-number">5.</span> <span class="post-toc-text">“==” 和 “===” 有什么不同?</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#如何判断一个对象是否属于某个类？"><span class="post-toc-number">6.</span> <span class="post-toc-text">如何判断一个对象是否属于某个类？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#window-foo-window-foo-“bar”-返回值是什么？"><span class="post-toc-number">7.</span> <span class="post-toc-text">window.foo || (window.foo = “bar”); 返回值是什么？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#JavaScript-的-typeof-返回哪些数据类型？"><span class="post-toc-number">8.</span> <span class="post-toc-text">JavaScript 的 typeof 返回哪些数据类型？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#请写出以下运算结果："><span class="post-toc-number">9.</span> <span class="post-toc-text">请写出以下运算结果：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#null-和-undefined-的区别？"><span class="post-toc-number">10.</span> <span class="post-toc-text">null 和 undefined 的区别？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#例举至少-3-种强制类型转换和-2-种隐式类型转换"><span class="post-toc-number">11.</span> <span class="post-toc-text">例举至少 3 种强制类型转换和 2 种隐式类型转换?</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#“-foo-div-bar-eq-0-”-请优化这段-JQuery-选择器？"><span class="post-toc-number">12.</span> <span class="post-toc-text">$(“.foo div#bar:eq(0)”) 请优化这段 JQuery 选择器？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#请解释-JQuery-中-end-的用途？"><span class="post-toc-number">13.</span> <span class="post-toc-text">请解释 JQuery 中 .end() 的用途？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#注册账号要求以字母开头，可以包含字母、数字、下划线，请写出验证该账号的正则表达式？"><span class="post-toc-number">14.</span> <span class="post-toc-text">注册账号要求以字母开头，可以包含字母、数字、下划线，请写出验证该账号的正则表达式？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#请列举三种减低页面加载时间的方法。（加载时间指感知的时间或者实际加载时间）"><span class="post-toc-number">15.</span> <span class="post-toc-text">请列举三种减低页面加载时间的方法。（加载时间指感知的时间或者实际加载时间）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#“I’m-lasagna-hog”-split-“”-reverse-jion-“”-语句的返回值是什么？"><span class="post-toc-number">16.</span> <span class="post-toc-text">“I’m lasagna hog”.split(“”).reverse().jion(“”); 语句的返回值是什么？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#function-console-log-1-和-window-onload-function-console-log-2-执行结果？详细说明原因？"><span class="post-toc-number">17.</span> <span class="post-toc-text">$(function(){console.log(1)}); 和 window.onload = function(){console.log(2)};执行结果？详细说明原因？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#请指出-JQuery中-“-bind-”、”-live-”-和-“delegate-”-的区别？"><span class="post-toc-number">18.</span> <span class="post-toc-text">请指出 JQuery中 “.bind()”、”.live()” 和 “delegate()” 的区别？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#请使用标准的-JSON-格式封装一组学生信息数据，内容包括：姓名、性别、住址（包括城市、街道、门牌号、地铁线）"><span class="post-toc-number">19.</span> <span class="post-toc-text">请使用标准的 JSON 格式封装一组学生信息数据，内容包括：姓名、性别、住址（包括城市、街道、门牌号、地铁线）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#客户查询手机消费清单要求："><span class="post-toc-number">20.</span> <span class="post-toc-text">客户查询手机消费清单要求：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#请简述-AJAX-及基本步骤？"><span class="post-toc-number">21.</span> <span class="post-toc-text">请简述 AJAX 及基本步骤？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#js延迟加载的方式有哪些？"><span class="post-toc-number">22.</span> <span class="post-toc-text">js延迟加载的方式有哪些？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#同步和异步的区别"><span class="post-toc-number">23.</span> <span class="post-toc-text">同步和异步的区别?</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#GET和POST的区别，何时使用POST？"><span class="post-toc-number">24.</span> <span class="post-toc-text">GET和POST的区别，何时使用POST？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#AJAX-的局限性"><span class="post-toc-number">25.</span> <span class="post-toc-text">AJAX 的局限性?</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#new-操作符具体干了什么呢"><span class="post-toc-number">26.</span> <span class="post-toc-text">new 操作符具体干了什么呢?</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#JavaScript-原型，原型链-有什么特点？"><span class="post-toc-number">27.</span> <span class="post-toc-text">JavaScript 原型，原型链 ? 有什么特点？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#实现对数组进行乱序"><span class="post-toc-number">28.</span> <span class="post-toc-text">实现对数组进行乱序</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#实现一个函数-clone-，可以对-JavaScript-中的5种主要的数据类型（包括-Number、String、Object、Array、Boolean）进行值复制。"><span class="post-toc-number">29.</span> <span class="post-toc-text">实现一个函数 clone()，可以对 JavaScript 中的5种主要的数据类型（包括 Number、String、Object、Array、Boolean）进行值复制。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#判断代码输出结果"><span class="post-toc-number">30.</span> <span class="post-toc-text">判断代码输出结果</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解释-call-与-apply-的区别，并写出下面代码输出的结果："><span class="post-toc-number">31.</span> <span class="post-toc-text">解释 call 与 apply 的区别，并写出下面代码输出的结果：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#研究下面-JS-代码是否有问题，有问题请描述问题并解决，没有问题请回答最终结果。"><span class="post-toc-number">32.</span> <span class="post-toc-text">研究下面 JS 代码是否有问题，有问题请描述问题并解决，没有问题请回答最终结果。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#设计一个列表，包含：地域、人数、百分比、时间。请实现按照-人数-与-时间-的排序算法。"><span class="post-toc-number">33.</span> <span class="post-toc-text">设计一个列表，包含：地域、人数、百分比、时间。请实现按照 人数 与 时间 的排序算法。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#请列举一些浏览器兼容性问题？以及提高性能方面的方案"><span class="post-toc-number">34.</span> <span class="post-toc-text">请列举一些浏览器兼容性问题？以及提高性能方面的方案</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#eval是做什么的？"><span class="post-toc-number">35.</span> <span class="post-toc-text">eval是做什么的？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#谈谈This对象的理解。"><span class="post-toc-number">36.</span> <span class="post-toc-text">谈谈This对象的理解。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#javascript创建对象的几种方式？"><span class="post-toc-number">37.</span> <span class="post-toc-text">javascript创建对象的几种方式？</span></a></li></ol>
-        </nav>
-    </aside>
+      <header class="post-header">
 
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端面试题集锦( ES篇)</h1>
+        
 
-<article id="post-前端面试题集锦( ES篇)"
-  class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title">前端面试题集锦( ES篇)</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-04-27 01:37:20" datetime="2018-04-26T17:37:20.000Z"  itemprop="datePublished">2018-04-27</time>
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-27T01:37:20+08:00">
+                2018-04-27
+              </time>
+            
 
             
 
-
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
 
         </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <h5 id="请描述一下-JavaScript-事件冒泡机制？"><a href="#请描述一下-JavaScript-事件冒泡机制？" class="headerlink" title="请描述一下 JavaScript 事件冒泡机制？"></a>请描述一下 JavaScript 事件冒泡机制？</h5><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://upload-images.jianshu.io/upload_images/3117374-851c2c19c5b5a022.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="JS事件捕获与冒泡原型图" title="">
-                </div>
-                <div class="image-caption">JS事件捕获与冒泡原型图</div>
-            </figure>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="请描述一下-JavaScript-事件冒泡机制？"><a href="#请描述一下-JavaScript-事件冒泡机制？" class="headerlink" title="请描述一下 JavaScript 事件冒泡机制？"></a>请描述一下 JavaScript 事件冒泡机制？</h5><p><img src="http://upload-images.jianshu.io/upload_images/3117374-851c2c19c5b5a022.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="JS事件捕获与冒泡原型图"></p>
 <blockquote>
 <p>当页面中某个元素的事件被触发以后，比如点击了页面中的某个按钮，<br>就触发了当前按钮的点击事件，但是 JavaScript 并不是简单就直接触发该元素的相应事件，<br>而是会首先从 DOM 树的最顶层（window）依次的去触发目标（被直接点击的）元素所有父级的同类事件，<br>直到触发到目标元素，然后又会再一次的从目标元素开始触发其所有父级的所有同类事件直到window，<br>也就是同类型事件的目标元素与 window 之间触发一个来回，<br>window 到目标的触发阶段，我们称为捕获阶段，<br>目标触发事件的时候我们称为目标阶段，<br>而最后目标到 window 的触发阶段，我们称为冒泡阶段。<br>这种机制我们称为<em>事件流（event flow）</em>，冒泡机制其实就是事件流机制中的冒泡阶段规则。</p>
 </blockquote>
@@ -685,297 +831,430 @@
 <hr>
 <p><strong>持续更新……………………</strong></p>
 
-        </div>
-
-        <blockquote class="post-copyright">
-    
-    <div class="content">
-        
-<span class="post-time">
-    Last updated: <time datetime="2018-04-25T16:34:31.000Z" itemprop="dateUpdated">2018-04-26 00:34:31</time>
-</span><br>
-
-
-        
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/04/27/前端面试题集锦( ES篇)/" target="_blank" rel="external">https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/</a>
-        
+      
     </div>
     
-    <footer>
-        <a href="https://kpeng.wang">
-            <img src="/img/avatar.jpg" alt="KyleWang">
-            KyleWang
-        </a>
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢老板！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="KyleWang WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="KyleWang Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试刷题/" rel="tag"># 面试刷题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/25/前端面试题集锦（HTML篇）/" rel="next" title="前端面试题集锦（html篇）">
+                <i class="fa fa-chevron-left"></i> 前端面试题集锦（html篇）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/03/Vue-js-运行机制全局概览/" rel="prev" title="Vue.js 运行机制全局概览">
+                Vue.js 运行机制全局概览 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
-</blockquote>
-
-        
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
-
-
-
-        <div class="post-footer">
-            
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试刷题/">面试刷题</a></li></ul>
-
-
-            
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/&title=《前端面试题集锦( ES篇)》 — 白夜关于前端技术总结与分享&pic=https://kpeng.wang/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/&title=《前端面试题集锦( ES篇)》 — 白夜关于前端技术总结与分享&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端面试题集锦( ES篇)》 — 白夜关于前端技术总结与分享&url=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/&via=https://kpeng.wang" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
+  </div>
+  
+  
+  
+  </article>
 
 
 
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
 
 
 
         </div>
-    </div>
-
-    
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/05/03/Vue-js-运行机制全局概览/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Vue.js 运行机制全局概览</h4>
-      </a>
-    </div>
-  
-
-  
-    <div class="waves-block waves-effect next">
-      <a href="/2018/04/25/前端面试题集锦（HTML篇）/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">前端面试题集锦（html篇）</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</article>
-
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        谢谢大爷~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <div class="reward-content">
         
-        <div class="reward-code">
-            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
-        </div>
-        
-        <label class="reward-toggle">
-            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
-                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
-            <div class="reward-toggle-ctrol">
-                <span class="reward-toggle-item wechat">微信</span>
-                <span class="reward-toggle-label"></span>
-                <span class="reward-toggle-item alipay">支付宝</span>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KyleWang</p>
+              <p class="site-description motion-element" itemprop="description">天下事有难易乎？为之，则难者亦易矣；不为，则易者亦难矣。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
             </div>
-        </label>
-        
-    </div>
-</div>
+          
 
+          
 
+          
+          
 
-</div>
+          
+          
 
-        <footer class="footer">
-    <!-- <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
+          
 
+        </div>
+      </section>
 
-        <p>
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
-        </p>
-    </div> -->
-    <div class="bottom">
-        <p><span>KyleWang &copy; 2018</span>
-        </p>
-    </div>
-</footer>
+              
+            
 
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#请描述一下-JavaScript-事件冒泡机制？"><span class="nav-number">1.</span> <span class="nav-text">请描述一下 JavaScript 事件冒泡机制？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript-的事件流模型都有什么？"><span class="nav-number">2.</span> <span class="nav-text">JavaScript 的事件流模型都有什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BOM-对象有哪些，列举-window-对象？"><span class="nav-number">3.</span> <span class="nav-text">BOM 对象有哪些，列举 window 对象？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#new操作符具体干了什么呢"><span class="nav-number">4.</span> <span class="nav-text">new操作符具体干了什么呢?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#“-”-和-“-”-有什么不同"><span class="nav-number">5.</span> <span class="nav-text">“==” 和 “===” 有什么不同?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何判断一个对象是否属于某个类？"><span class="nav-number">6.</span> <span class="nav-text">如何判断一个对象是否属于某个类？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#window-foo-window-foo-“bar”-返回值是什么？"><span class="nav-number">7.</span> <span class="nav-text">window.foo || (window.foo = “bar”); 返回值是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript-的-typeof-返回哪些数据类型？"><span class="nav-number">8.</span> <span class="nav-text">JavaScript 的 typeof 返回哪些数据类型？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请写出以下运算结果："><span class="nav-number">9.</span> <span class="nav-text">请写出以下运算结果：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#null-和-undefined-的区别？"><span class="nav-number">10.</span> <span class="nav-text">null 和 undefined 的区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例举至少-3-种强制类型转换和-2-种隐式类型转换"><span class="nav-number">11.</span> <span class="nav-text">例举至少 3 种强制类型转换和 2 种隐式类型转换?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#“-foo-div-bar-eq-0-”-请优化这段-JQuery-选择器？"><span class="nav-number">12.</span> <span class="nav-text">$(“.foo div#bar:eq(0)”) 请优化这段 JQuery 选择器？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请解释-JQuery-中-end-的用途？"><span class="nav-number">13.</span> <span class="nav-text">请解释 JQuery 中 .end() 的用途？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注册账号要求以字母开头，可以包含字母、数字、下划线，请写出验证该账号的正则表达式？"><span class="nav-number">14.</span> <span class="nav-text">注册账号要求以字母开头，可以包含字母、数字、下划线，请写出验证该账号的正则表达式？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请列举三种减低页面加载时间的方法。（加载时间指感知的时间或者实际加载时间）"><span class="nav-number">15.</span> <span class="nav-text">请列举三种减低页面加载时间的方法。（加载时间指感知的时间或者实际加载时间）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#“I’m-lasagna-hog”-split-“”-reverse-jion-“”-语句的返回值是什么？"><span class="nav-number">16.</span> <span class="nav-text">“I’m lasagna hog”.split(“”).reverse().jion(“”); 语句的返回值是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#function-console-log-1-和-window-onload-function-console-log-2-执行结果？详细说明原因？"><span class="nav-number">17.</span> <span class="nav-text">$(function(){console.log(1)}); 和 window.onload = function(){console.log(2)};执行结果？详细说明原因？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请指出-JQuery中-“-bind-”、”-live-”-和-“delegate-”-的区别？"><span class="nav-number">18.</span> <span class="nav-text">请指出 JQuery中 “.bind()”、”.live()” 和 “delegate()” 的区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请使用标准的-JSON-格式封装一组学生信息数据，内容包括：姓名、性别、住址（包括城市、街道、门牌号、地铁线）"><span class="nav-number">19.</span> <span class="nav-text">请使用标准的 JSON 格式封装一组学生信息数据，内容包括：姓名、性别、住址（包括城市、街道、门牌号、地铁线）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#客户查询手机消费清单要求："><span class="nav-number">20.</span> <span class="nav-text">客户查询手机消费清单要求：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请简述-AJAX-及基本步骤？"><span class="nav-number">21.</span> <span class="nav-text">请简述 AJAX 及基本步骤？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#js延迟加载的方式有哪些？"><span class="nav-number">22.</span> <span class="nav-text">js延迟加载的方式有哪些？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#同步和异步的区别"><span class="nav-number">23.</span> <span class="nav-text">同步和异步的区别?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GET和POST的区别，何时使用POST？"><span class="nav-number">24.</span> <span class="nav-text">GET和POST的区别，何时使用POST？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AJAX-的局限性"><span class="nav-number">25.</span> <span class="nav-text">AJAX 的局限性?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#new-操作符具体干了什么呢"><span class="nav-number">26.</span> <span class="nav-text">new 操作符具体干了什么呢?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript-原型，原型链-有什么特点？"><span class="nav-number">27.</span> <span class="nav-text">JavaScript 原型，原型链 ? 有什么特点？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现对数组进行乱序"><span class="nav-number">28.</span> <span class="nav-text">实现对数组进行乱序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现一个函数-clone-，可以对-JavaScript-中的5种主要的数据类型（包括-Number、String、Object、Array、Boolean）进行值复制。"><span class="nav-number">29.</span> <span class="nav-text">实现一个函数 clone()，可以对 JavaScript 中的5种主要的数据类型（包括 Number、String、Object、Array、Boolean）进行值复制。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断代码输出结果"><span class="nav-number">30.</span> <span class="nav-text">判断代码输出结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解释-call-与-apply-的区别，并写出下面代码输出的结果："><span class="nav-number">31.</span> <span class="nav-text">解释 call 与 apply 的区别，并写出下面代码输出的结果：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#研究下面-JS-代码是否有问题，有问题请描述问题并解决，没有问题请回答最终结果。"><span class="nav-number">32.</span> <span class="nav-text">研究下面 JS 代码是否有问题，有问题请描述问题并解决，没有问题请回答最终结果。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计一个列表，包含：地域、人数、百分比、时间。请实现按照-人数-与-时间-的排序算法。"><span class="nav-number">33.</span> <span class="nav-text">设计一个列表，包含：地域、人数、百分比、时间。请实现按照 人数 与 时间 的排序算法。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请列举一些浏览器兼容性问题？以及提高性能方面的方案"><span class="nav-number">34.</span> <span class="nav-text">请列举一些浏览器兼容性问题？以及提高性能方面的方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#eval是做什么的？"><span class="nav-number">35.</span> <span class="nav-text">eval是做什么的？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#谈谈This对象的理解。"><span class="nav-number">36.</span> <span class="nav-text">谈谈This对象的理解。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#javascript创建对象的几种方式？"><span class="nav-number">37.</span> <span class="nav-text">javascript创建对象的几种方式？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
     </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KyleWang</span>
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/&title=《前端面试题集锦( ES篇)》 — 白夜关于前端技术总结与分享&pic=https://kpeng.wang/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/&title=《前端面试题集锦( ES篇)》 — 白夜关于前端技术总结与分享&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端面试题集锦( ES篇)》 — 白夜关于前端技术总结与分享&url=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/&via=https://kpeng.wang" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://kpeng.wang/2018/04/27/前端面试题集锦( ES篇)/" alt="微信分享二维码">
+  
 </div>
 
 
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+  <span class="post-meta-divider">|</span>
 
 
-</script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+        
 
 
 
 
 
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+        
+      </div>
+    </footer>
 
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
 
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
 
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
