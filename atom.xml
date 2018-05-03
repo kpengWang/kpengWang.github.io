@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>白夜关于前端技术总结与分享</title>
+  <title>白夜的前端技术总结与填坑之旅</title>
   
-  <subtitle>做一个干货满满的博客</subtitle>
+  <subtitle>KyleWang&#39;s Personal Website</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kpeng.wang/"/>
