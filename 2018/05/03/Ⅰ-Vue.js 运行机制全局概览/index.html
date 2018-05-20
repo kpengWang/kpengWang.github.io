@@ -82,7 +82,7 @@
 
 
 
-  <meta name="keywords" content="vue,vue解读," />
+  <meta name="keywords" content="vue,vue源码解读," />
 
 
 
@@ -96,10 +96,10 @@
 
 
 <meta name="description" content="首次看这张运行机制图，可能会一头雾水。  初始化及挂载 在new Vue()之后。Vue会调用_init函数进行初始化，也就是这里的init过程，它会初始化生命周期、事件、props、methods、data、computed与watch等。其中最重要的是通过Object.defineProperty设置setter与getter函数，用来实现 「响应式」 以及 「依赖收集」。 初始化之后调用$m">
-<meta name="keywords" content="vue,vue解读">
+<meta name="keywords" content="vue,vue源码解读">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue.js 运行机制全局概览">
-<meta property="og:url" content="https://kpeng.wang/2018/05/03/Vue-js-运行机制全局概览/index.html">
+<meta property="og:title" content="Ⅰ--Vue.js 运行机制全局概览">
+<meta property="og:url" content="https://kpeng.wang/2018/05/03/Ⅰ-Vue.js 运行机制全局概览/index.html">
 <meta property="og:site_name" content="白夜的前端技术总结与填坑之旅">
 <meta property="og:description" content="首次看这张运行机制图，可能会一头雾水。  初始化及挂载 在new Vue()之后。Vue会调用_init函数进行初始化，也就是这里的init过程，它会初始化生命周期、事件、props、methods、data、computed与watch等。其中最重要的是通过Object.defineProperty设置setter与getter函数，用来实现 「响应式」 以及 「依赖收集」。 初始化之后调用$m">
 <meta property="og:locale" content="zh-CN">
@@ -110,9 +110,9 @@
 <meta property="og:image" content="https://p.qlogo.cn/qqmail_head/oA62fHtPSY5lf4eYY0IVRhC3q7mC3MJXbDKVm9XqSX2oKicibVaWhzQC4uj7zWNeXw/0">
 <meta property="og:image" content="https://p.qlogo.cn/qqmail_head/ajNVdqHZLLBBoBS7J0uwiacFPNtxjb0qx7BFahcf4EzgrrDiby4kicQOcwvdYz8ViaCmaL80jC1yZaM/0">
 <meta property="og:image" content="https://p.qlogo.cn/qqmail_head/hgXWbMaaqmBhXiadF2GFdBTSHeCKqmamwoJkeGWs5aDsXr0l3alkHT88go2XicPAyDWPfVI7TM75c/0">
-<meta property="og:updated_time" content="2018-05-02T16:42:05.000Z">
+<meta property="og:updated_time" content="2018-05-20T15:27:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue.js 运行机制全局概览">
+<meta name="twitter:title" content="Ⅰ--Vue.js 运行机制全局概览">
 <meta name="twitter:description" content="首次看这张运行机制图，可能会一头雾水。  初始化及挂载 在new Vue()之后。Vue会调用_init函数进行初始化，也就是这里的init过程，它会初始化生命周期、事件、props、methods、data、computed与watch等。其中最重要的是通过Object.defineProperty设置setter与getter函数，用来实现 「响应式」 以及 「依赖收集」。 初始化之后调用$m">
 <meta name="twitter:image" content="https://p.qlogo.cn/qqmail_head/hgXWbMaaqmBhXiadF2GFdBTSHeCKqmamwoJkeGWs5aDsXr0l3alkHT88go2XicPAyDWPfVI7TM75c/0">
 
@@ -144,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="https://kpeng.wang/2018/05/03/Vue-js-运行机制全局概览/"/>
+  <link rel="canonical" href="https://kpeng.wang/2018/05/03/Ⅰ-Vue.js 运行机制全局概览/"/>
 
 
 
 
 
-  <title>Vue.js 运行机制全局概览 | 白夜的前端技术总结与填坑之旅</title>
+  <title>Ⅰ--Vue.js 运行机制全局概览 | 白夜的前端技术总结与填坑之旅</title>
   
 
 
@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kpeng.wang/2018/05/03/Vue-js-运行机制全局概览/">
+    <link itemprop="mainEntityOfPage" href="https://kpeng.wang/2018/05/03/Ⅰ-Vue.js 运行机制全局概览/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="KyleWang">
@@ -294,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Vue.js 运行机制全局概览</h1>
+          <h1 class="post-title" itemprop="name headline">Ⅰ--Vue.js 运行机制全局概览</h1>
         
 
         <div class="post-meta">
@@ -422,7 +422,7 @@
           
             <a href="/tags/vue/" rel="tag"># vue</a>
           
-            <a href="/tags/vue解读/" rel="tag"># vue解读</a>
+            <a href="/tags/vue源码解读/" rel="tag"># vue源码解读</a>
           
         </div>
       
@@ -528,7 +528,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
