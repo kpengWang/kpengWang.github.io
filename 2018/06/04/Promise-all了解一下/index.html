@@ -82,7 +82,7 @@
 
 
 
-  <meta name="keywords" content="gulp,work-flow," />
+  <meta name="keywords" content="ES6," />
 
 
 
@@ -95,26 +95,18 @@
 
 
 
-<meta name="description" content="背景在之前分布尝试过不同的第三方编译工具，比如weflow,legoflow等等之后，仍感觉抛出的配置参数功能不够顺手，它们底层其实也是用gulp.js配合少量其它的打包工具来封装实现的，主要方法是将config用模块化的方式来，逐个读取所需的stream实现。 公司之前的不少PC端项目都是使用的gulp.js，好处是上手快，配置轻巧，并且可以集成其它的打包工具来填平短板。所以打算整理一下。 主要">
-<meta name="keywords" content="gulp,work-flow">
+<meta name="description" content="在有些业务需求下，要一次返回多个不同请求结果，分别两个场景：  同一条请求不同，参数不同 多个不同请求，参数相同  参数不同，请求相同123456789let types = [0, 1, 2]function toSort(obj) &amp;#123; // 转换同步    params.player_type = obj    return api.getPlayerStayRole(params)">
+<meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="配一个趁手的gulp-cli环境">
-<meta property="og:url" content="https://kpeng.wang/2018/04/25/配一个趁手的gulp-cli环境/index.html">
+<meta property="og:title" content="Promise.all了解一下">
+<meta property="og:url" content="https://kpeng.wang/2018/06/04/Promise-all了解一下/index.html">
 <meta property="og:site_name" content="白夜的前端技术总结与填坑之旅">
-<meta property="og:description" content="背景在之前分布尝试过不同的第三方编译工具，比如weflow,legoflow等等之后，仍感觉抛出的配置参数功能不够顺手，它们底层其实也是用gulp.js配合少量其它的打包工具来封装实现的，主要方法是将config用模块化的方式来，逐个读取所需的stream实现。 公司之前的不少PC端项目都是使用的gulp.js，好处是上手快，配置轻巧，并且可以集成其它的打包工具来填平短板。所以打算整理一下。 主要">
+<meta property="og:description" content="在有些业务需求下，要一次返回多个不同请求结果，分别两个场景：  同一条请求不同，参数不同 多个不同请求，参数相同  参数不同，请求相同123456789let types = [0, 1, 2]function toSort(obj) &amp;#123; // 转换同步    params.player_type = obj    return api.getPlayerStayRole(params)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSES9q7YJ8ac2hJw4Vp1HMl93ImYauPDRTI/0">
-<meta property="og:image" content="https://p.qlogo.cn/qqmail_head/g0P5PPXZdbjc1uFQD5ic4uEgIY6FsZGr1uGcUHaYyNaDr8KicyJ44VOE6BraPIeBtD/0">
-<meta property="og:image" content="https://p.qlogo.cn/qqmail_head/Q3auHgzwzM6NZ3fLpAqBLovOO4mndJsCL7icnOibzBEcvdJbCHRqj0r2SYpde8wjbr1rnueGL6jJc/0">
-<meta property="og:image" content="https://p.qlogo.cn/qqmail_head/ajNVdqHZLLBz98Fd73icsa0Oh6QggWJgJePofyJVjcibqSibeicNtBddNrEWlOt7Friaem3ZicNV08AibQ/0">
-<meta property="og:image" content="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSEcOVbjp89LI3fNib4xW2T5zd91OE869MMM/0">
-<meta property="og:image" content="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSGWam37e5MicrhXSC9HfFQTyfdaRR7YjcLc/0">
-<meta property="og:image" content="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSET0rfXgALuBGM4F2VK67huo9EyicNkSGXk/0">
-<meta property="og:updated_time" content="2018-04-24T16:15:23.000Z">
+<meta property="og:updated_time" content="2018-07-07T17:06:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="配一个趁手的gulp-cli环境">
-<meta name="twitter:description" content="背景在之前分布尝试过不同的第三方编译工具，比如weflow,legoflow等等之后，仍感觉抛出的配置参数功能不够顺手，它们底层其实也是用gulp.js配合少量其它的打包工具来封装实现的，主要方法是将config用模块化的方式来，逐个读取所需的stream实现。 公司之前的不少PC端项目都是使用的gulp.js，好处是上手快，配置轻巧，并且可以集成其它的打包工具来填平短板。所以打算整理一下。 主要">
-<meta name="twitter:image" content="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSES9q7YJ8ac2hJw4Vp1HMl93ImYauPDRTI/0">
+<meta name="twitter:title" content="Promise.all了解一下">
+<meta name="twitter:description" content="在有些业务需求下，要一次返回多个不同请求结果，分别两个场景：  同一条请求不同，参数不同 多个不同请求，参数相同  参数不同，请求相同123456789let types = [0, 1, 2]function toSort(obj) &amp;#123; // 转换同步    params.player_type = obj    return api.getPlayerStayRole(params)">
 
 
 
@@ -144,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://kpeng.wang/2018/04/25/配一个趁手的gulp-cli环境/"/>
+  <link rel="canonical" href="https://kpeng.wang/2018/06/04/Promise-all了解一下/"/>
 
 
 
 
 
-  <title>配一个趁手的gulp-cli环境 | 白夜的前端技术总结与填坑之旅</title>
+  <title>Promise.all了解一下 | 白夜的前端技术总结与填坑之旅</title>
   
 
 
@@ -277,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kpeng.wang/2018/04/25/配一个趁手的gulp-cli环境/">
+    <link itemprop="mainEntityOfPage" href="https://kpeng.wang/2018/06/04/Promise-all了解一下/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="KyleWang">
@@ -294,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">配一个趁手的gulp-cli环境</h1>
+          <h1 class="post-title" itemprop="name headline">Promise.all了解一下</h1>
         
 
         <div class="post-meta">
@@ -306,8 +298,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T00:11:08+08:00">
-                2018-04-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T00:15:15+08:00">
+                2018-06-04
               </time>
             
 
@@ -344,50 +336,14 @@
       
 
       
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在之前分布尝试过不同的第三方编译工具，比如<a href="https://weflow.io/" target="_blank" rel="noopener">weflow</a>,<a href="https://legoflow.com/" target="_blank" rel="noopener">legoflow</a>等等之后，仍感觉抛出的配置参数功能不够顺手，它们底层其实也是用gulp.js配合少量其它的打包工具来封装实现的，主要方法是将config用模块化的方式来，逐个读取所需的stream实现。</p>
-<p>公司之前的不少PC端项目都是使用的gulp.js，好处是上手快，配置轻巧，并且可以集成其它的打包工具来填平短板。所以打算整理一下。</p>
-<p>主要是根据node环境来抽离出开发阶段与打包阶段的stream，尽量的加快编译速度以及打包速度。</p>
-<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSES9q7YJ8ac2hJw4Vp1HMl93ImYauPDRTI/0" alt="目录结构"></p>
-<p>主要分为三个目录文件夹</p>
+        <p>在有些业务需求下，要一次返回多个不同请求结果，分别两个场景：</p>
 <ul>
-<li><code>src</code> 开发环境资源文件</li>
-<li><code>node_modules</code> 依赖包</li>
-<li><code>dist</code> 生产环境(编译后文件)</li>
+<li>同一条请求不同，参数不同</li>
+<li>多个不同请求，参数相同</li>
 </ul>
-<p>以及一些其它的配置文件</p>
-<ul>
-<li><code>.babelrc</code> babel的规则配置文件</li>
-<li><code>.eslintignore</code>eslint忽略的规则配置文件</li>
-<li><code>.eslintrc</code> eslint执行的规则配置文件 </li>
-<li><code>gulpfile.js</code> gulp的stream配置文件</li>
-<li><code>typings.json</code> typings的配置文件</li>
-</ul>
-<p><img src="https://p.qlogo.cn/qqmail_head/g0P5PPXZdbjc1uFQD5ic4uEgIY6FsZGr1uGcUHaYyNaDr8KicyJ44VOE6BraPIeBtD/0" alt="src目录说明"></p>
-<h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><p> <code>npm run dev</code></p>
-<ol>
-<li><strong>Sass语法编译</strong>(对应的sourcemap映射以及autoprefixer抹平兼容性前缀)</li>
-<li><strong>Babel</strong> (对应的sourcemap映射)</li>
-<li><strong>sprite雪碧图</strong>（自动生成相应的背景图片定位scss文件）</li>
-<li><strong>includefile</strong></li>
-<li><strong>集成typings </strong>(jquery,lodash语法提示)</li>
-<li><strong>集成art-template</strong></li>
-<li><strong>集成Rollup</strong>（主要使用tree-shaking摇树功能）</li>
-<li><strong>集成eslint</strong></li>
-<li><strong>middle-ware-server中间层代理</strong></li>
-<li><strong>热更新</strong></li>
-</ol>
-<p>根据下图不难看出，目前的模块化形式为<code>umd</code>标准，即兼容amd与conmmonjs的写法，可以解决跨平台的解决方案。<br>最关键的是实现了tree-shaking, 即不会将整个import的js模块文件内容加入进来，而是仅将代码中使用到的方法导入<br><img src="https://p.qlogo.cn/qqmail_head/Q3auHgzwzM6NZ3fLpAqBLovOO4mndJsCL7icnOibzBEcvdJbCHRqj0r2SYpde8wjbr1rnueGL6jJc/0" alt="dev阶段"></p>
+<h2 id="参数不同，请求相同"><a href="#参数不同，请求相同" class="headerlink" title="参数不同，请求相同"></a>参数不同，请求相同</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let types = [0, 1, 2]</span><br><span class="line">function toSort(obj) &#123; // 转换同步</span><br><span class="line">    params.player_type = obj</span><br><span class="line">    return api.getPlayerStayRole(params)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> Promise.all(playerTypes.map(item =&gt; toSort(item))).then(res =&gt; &#123;</span><br><span class="line">      // do something</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="打包阶段"><a href="#打包阶段" class="headerlink" title="打包阶段"></a>打包阶段</h3><p> <code>npm run build</code></p>
-<ol>
-<li>压缩html,js,css以及图片静态资源</li>
-<li>添加md5</li>
-</ol>
-<p><img src="https://p.qlogo.cn/qqmail_head/ajNVdqHZLLBz98Fd73icsa0Oh6QggWJgJePofyJVjcibqSibeicNtBddNrEWlOt7Friaem3ZicNV08AibQ/0" alt="压缩"></p>
-<h3 id="引申"><a href="#引申" class="headerlink" title="引申"></a>引申</h3><h4 id="typings实现智能"><a href="#typings实现智能" class="headerlink" title="typings实现智能"></a>typings实现智能</h4><p>这一点主要是针对编辑器，<a href="http://www.cnblogs.com/Leo_wl/p/5455619.html" target="_blank" rel="noopener">Typings实现智能</a></p>
-<p><img src="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSEcOVbjp89LI3fNib4xW2T5zd91OE869MMM/0" alt="typings"></p>
-<h4 id="兼容"><a href="#兼容" class="headerlink" title="兼容"></a>兼容</h4><p>需要注意的是，使用es6+的语法开发需要引入<a href="https://cdn.bootcss.com/babel-polyfill/6.26.0/polyfill.min.js" target="_blank" rel="noopener">babel-polyfill</a>来抹平低级浏览器的兼容问题。</p>
-<h4 id="浏览器份额与分辨率份额"><a href="#浏览器份额与分辨率份额" class="headerlink" title="浏览器份额与分辨率份额"></a>浏览器份额与分辨率份额</h4><p>兼容这个问题是绕不开的，相对来说既令很多数让头疼不已，但是从另一个角度来看，也是一个鉴别经验水平的的分水岭之一，但是绝对抹平所有所有问题有些不切实际，会成倍增加额外开发成本。所以可以参考主流浏览器以及分辨率这两个维度来做适当的hacking。<br><img src="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSGWam37e5MicrhXSC9HfFQTyfdaRR7YjcLc/0" alt="分辨率份额"><br><img src="https://p.qlogo.cn/qqmail_head/tNn4SGP0ryVIicCBlQwszz1MK4ibMnMgDQy8cCzmVntSET0rfXgALuBGM4F2VK67huo9EyicNkSGXk/0" alt="浏览器份额"></p>
+<h2 id="参数相同，请求不同"><a href="#参数相同，请求不同" class="headerlink" title="参数相同，请求不同"></a>参数相同，请求不同</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">let conmmonParams = &#123; app_id: &apos;all&apos;, project_id: 10000001 &#125; //公共参数</span><br><span class="line">let types = [0, 1, 2]</span><br><span class="line">let content = &apos;&apos;</span><br><span class="line"></span><br><span class="line">function toSort(obj) &#123;</span><br><span class="line">    switch (obj.type) &#123;</span><br><span class="line">        case 1: // 区服</span><br><span class="line">            return api.filterServer(conmmonParams)</span><br><span class="line">            break</span><br><span class="line">        case 2: // 常规渠道 </span><br><span class="line">            return api.filterChannel(conmmonParams)</span><br><span class="line">            break</span><br><span class="line">        case 3: // 广告渠道</span><br><span class="line">            return api.filterAdChannel(conmmonParams)</span><br><span class="line">            break</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Promise.all(types.map(item =&gt; toSort(&#123; type: item &#125;))).then(resArr =&gt; &#123;</span><br><span class="line">    // 需要手动拼接的参数</span><br><span class="line">    const staticParam = [</span><br><span class="line">        &#123; title: &apos;aaa&apos;, type: &apos;server&apos; &#125;,</span><br><span class="line">        &#123; title: &apos;bbb&apos;, type: &apos;channel&apos; &#125;,</span><br><span class="line">        &#123; title: &apos;ccc&apos;, type: &apos;ad_channel&apos; &#125;</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    // 将静态字段title和type 并入接口数据中</span><br><span class="line">    filterType.forEach((k, j) =&gt; resArr[j] = Object.assign(&#123;&#125;,resArr[j], staticParam[k]))</span><br><span class="line"></span><br><span class="line">    // 将传入的不同类型</span><br><span class="line">    resArr.forEach(res =&gt; content.push(res))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -434,9 +390,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/gulp/" rel="tag"># gulp</a>
-          
-            <a href="/tags/work-flow/" rel="tag"># work-flow</a>
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -449,14 +403,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/22/Ⅳ-实现Virtual-DOM下的一个VNode节点/" rel="next" title="Ⅳ--实现Virtual DOM下的一个VNode节点">
+                <i class="fa fa-chevron-left"></i> Ⅳ--实现Virtual DOM下的一个VNode节点
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/25/前端面试题集锦（HTML篇）/" rel="prev" title="前端面试题集锦（html篇）">
-                前端面试题集锦（html篇） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/08/Promise的前世/" rel="prev" title="Promise的前世">
+                Promise的前世 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -607,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">2.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发环境"><span class="nav-number">3.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包阶段"><span class="nav-number">4.</span> <span class="nav-text">打包阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引申"><span class="nav-number">5.</span> <span class="nav-text">引申</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#typings实现智能"><span class="nav-number">5.1.</span> <span class="nav-text">typings实现智能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#兼容"><span class="nav-number">5.2.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器份额与分辨率份额"><span class="nav-number">5.3.</span> <span class="nav-text">浏览器份额与分辨率份额</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数不同，请求相同"><span class="nav-number">1.</span> <span class="nav-text">参数不同，请求相同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数相同，请求不同"><span class="nav-number">2.</span> <span class="nav-text">参数相同，请求不同</span></a></li></ol></div>
             
 
           </div>
