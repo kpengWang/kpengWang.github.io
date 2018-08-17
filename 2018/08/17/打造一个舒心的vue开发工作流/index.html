@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #ff3a6d; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #ff3a6d, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #ff3a6d;    /*上边框颜色*/
+        border-left-color: #ff3a6d;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="工作流,Vue," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白夜的前端技术总结与填坑之旅" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="概览Base vue-cli3.0  注入插件 PostCss =&amp;gt; 支持px单位自动换算 Stylus + Stylus-loader =&amp;gt; 支持Stylus语法糖 VConsole =&amp;gt; 支持移动端调试控制台 Lodash  =&amp;gt; 支持Js工具库 NProgress =&amp;gt; 支持页面跳转顶部loading axios  =&amp;gt; 支持ajax数据请求和数据劫持 m">
+<meta name="keywords" content="工作流,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打造一个舒心的vue开发工作流">
+<meta property="og:url" content="https://kpeng.wang/2018/08/17/打造一个舒心的vue开发工作流/index.html">
+<meta property="og:site_name" content="白夜的前端技术总结与填坑之旅">
+<meta property="og:description" content="概览Base vue-cli3.0  注入插件 PostCss =&amp;gt; 支持px单位自动换算 Stylus + Stylus-loader =&amp;gt; 支持Stylus语法糖 VConsole =&amp;gt; 支持移动端调试控制台 Lodash  =&amp;gt; 支持Js工具库 NProgress =&amp;gt; 支持页面跳转顶部loading axios  =&amp;gt; 支持ajax数据请求和数据劫持 m">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/1.png?raw=true">
+<meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/2.png?raw=true">
+<meta property="og:updated_time" content="2018-08-17T09:35:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="打造一个舒心的vue开发工作流">
+<meta name="twitter:description" content="概览Base vue-cli3.0  注入插件 PostCss =&amp;gt; 支持px单位自动换算 Stylus + Stylus-loader =&amp;gt; 支持Stylus语法糖 VConsole =&amp;gt; 支持移动端调试控制台 Lodash  =&amp;gt; 支持Js工具库 NProgress =&amp;gt; 支持页面跳转顶部loading axios  =&amp;gt; 支持ajax数据请求和数据劫持 m">
+<meta name="twitter:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/1.png?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kpeng.wang/2018/08/17/打造一个舒心的vue开发工作流/"/>
+
+
+
+
+
+  <title>打造一个舒心的vue开发工作流 | 白夜的前端技术总结与填坑之旅</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/kpengwang"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白夜的前端技术总结与填坑之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">KyleWang's Personal Website</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kpeng.wang/2018/08/17/打造一个舒心的vue开发工作流/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KyleWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜的前端技术总结与填坑之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">打造一个舒心的vue开发工作流</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-17T17:33:50+08:00">
+                2018-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><h2 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h2><ul>
+<li><strong>vue-cli3.0</strong></li>
+</ul>
+<h2 id="注入插件"><a href="#注入插件" class="headerlink" title="注入插件"></a>注入插件</h2><ul>
+<li><strong>PostCss</strong> =&gt; <em>支持px单位自动换算</em></li>
+<li><strong>Stylus + Stylus-loader</strong> =&gt; <em>支持Stylus语法糖</em></li>
+<li><strong>VConsole</strong> =&gt; <em>支持移动端调试控制台</em></li>
+<li><strong>Lodash</strong>  =&gt; <em>支持Js工具库</em></li>
+<li><strong>NProgress</strong> =&gt; <em>支持页面跳转顶部loading</em></li>
+<li><strong>axios</strong>  =&gt; <em>支持ajax数据请求和数据劫持</em></li>
+<li><strong>mock.js</strong> =&gt; <em>支持前端mock静态数据</em></li>
+<li><strong>.editorConfig</strong> =&gt; <em>支持编辑器统一代码格式化</em></li>
+<li><strong>Vue-Meta</strong>  =&gt; <em>支持SPA下单独设置页面title以及元信息</em></li>
+<li><strong>husky + lint-staged</strong>  =&gt; <em>支持Git钩子验证</em></li>
+<li><strong>vue-lazyload</strong>  =&gt; <em>支持图片懒加载</em></li>
+<li><strong>vue-lazy-component</strong>  =&gt; <em>支持模版懒加载，可做骨架屏优化</em></li>
+<li><strong>vuex</strong>  =&gt; <em>支持状态管理器</em></li>
+<li><strong>vuex-persistedstate</strong>  =&gt; <em>支持数据状态持久化</em></li>
+<li><strong>vue-router</strong> =&gt; <em>支持路由跳转管理</em></li>
+<li><strong>vuex-router-sync</strong> =&gt; <em>支持router的状态&lt;path,query和params&gt;存入vuex的state中</em></li>
+<li>…</li>
+</ul>
+<h2 id="UI库"><a href="#UI库" class="headerlink" title="UI库"></a>UI库</h2><ul>
+<li><strong>cube-ui</strong>  </li>
+</ul>
+<h2 id="Webpack-优化"><a href="#Webpack-优化" class="headerlink" title="Webpack 优化"></a>Webpack 优化</h2><ul>
+<li><strong>Happypack</strong>  =&gt; <em>多进程打包</em></li>
+<li><strong>webpack-parallel-unglify-plugin</strong> =&gt; <em>利用缓存快速压缩</em></li>
+<li>…</li>
+</ul>
+<h2 id="Feature"><a href="#Feature" class="headerlink" title="Feature"></a>Feature</h2><ul>
+<li><strong>vue-i18n</strong> =&gt; <em>多语言配置解决方案</em></li>
+<li><strong>vue-class-component</strong> =&gt; <em>以class的模式写Vue</em></li>
+<li><strong>vuex-class-</strong> =&gt; <em>装饰器语法写Vuex</em></li>
+<li><strong>vue-property-decorator</strong>  =&gt; <em>装饰器语法写钩子函数</em></li>
+<li><strong>SSR</strong>  =&gt; <em>支持服务端渲染</em></li>
+<li><strong>Koa2/egg</strong>  =&gt; <em>支持中间层</em></li>
+<li>…</li>
+</ul>
+<hr>
+<h1 id="Base-脚手架"><a href="#Base-脚手架" class="headerlink" title="Base 脚手架"></a>Base 脚手架</h1><blockquote>
+<p>主要基于vue-cli 3.0 版本做了一些提高团队生产力和开发效率的事情。推荐阅读<a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener">vue-cli官方文档</a>。</p>
+</blockquote>
+<hr>
+<h1 id="插件说明"><a href="#插件说明" class="headerlink" title="插件说明"></a>插件说明</h1><h2 id="PostCss"><a href="#PostCss" class="headerlink" title="PostCss"></a>PostCss</h2><blockquote>
+<p>这里有一个坑需要注意一下,踩了一坑，由于<code>postcss-px-to-viewport</code>并没有<code>exclude</code>配置项，所以会把<code>node_modules</code>里的ui库文件的css也包含进去进行转换，控制台会出现warning，所以需要做一些必要的处理。</p>
+</blockquote>
+<p><img src="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/1.png?raw=true" alt="warning"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 此段代码在依赖包postcss-px-to-viewport/index.js里 大约第30行</span></span><br><span class="line">...</span><br><span class="line">css.walkDecls(<span class="function"><span class="keyword">function</span> (<span class="params">decl, i</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (options.exclude) &#123; <span class="comment">// 添加对exclude选项的处理</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(options.exclude) !== <span class="string">'[object RegExp]'</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'options.exclude should be RegExp!'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (decl.source.input.file.match(options.exclude) !== <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>然后就在<code>.postcssrc</code>配置文件里添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"> <span class="string">"postcss-px-to-viewport"</span>:&#123;</span><br><span class="line">     ...</span><br><span class="line">    exclude: <span class="regexp">/(\/|\\)(node_modules)(\/|\\)/</span>  <span class="comment">// 忽略node_modules</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Stylus-Stylus-loader"><a href="#Stylus-Stylus-loader" class="headerlink" title="Stylus + Stylus-loader"></a>Stylus + Stylus-loader</h2><blockquote>
+<p>推荐使用Stylus，语法简练。<br>具体语法可参考<a href="https://devhints.io/stylus" target="_blank" rel="noopener">Stylus cheatsheet</a></p>
+</blockquote>
+<h2 id="VConsole"><a href="#VConsole" class="headerlink" title="VConsole"></a>VConsole</h2><blockquote>
+<p>真机调试，在<code>main.js</code>里已配置。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开发环境开启vConsole</span></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> vConsole = <span class="keyword">new</span> VConsole()</span><br><span class="line">  <span class="built_in">console</span>.log(vConsole.version)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Lodash"><a href="#Lodash" class="headerlink" title="Lodash"></a>Lodash</h2><blockquote>
+<p>在<code>main.js</code>里注入到Vue的原型上，通过<code>this._</code>来调用。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype._ = lodash</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Example</span></span><br><span class="line"><span class="keyword">this</span>._.chunk([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>], <span class="number">2</span>);</span><br><span class="line"><span class="comment">// =&gt; [['a', 'b'], ['c', 'd']]</span></span><br></pre></td></tr></table></figure>
+<p>其它用法请浏览<br><a href="https://www.lodashjs.com/docs/4.17.5.html" target="_blank" rel="noopener">lodash文档</a>。</p>
+<h2 id="NProgress"><a href="#NProgress" class="headerlink" title="NProgress"></a>NProgress</h2><blockquote>
+<p>在<code>main.js</code>里引入样式文件</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'nprogress/nprogress.css'</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在<code>router.js</code>的钩子函数里根据不同场景做配置</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  判断是否需要登录权限 以及是否登录</span></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> userinfo = storage.get(<span class="string">'userinfo'</span>)</span><br><span class="line">  <span class="comment">// 判断是否需要登录权限</span></span><br><span class="line">  <span class="keyword">if</span> (to.matched.some(<span class="function"><span class="params">res</span> =&gt;</span> res.meta.requireAuth)) &#123; </span><br><span class="line">    <span class="comment">// 判断是否登录</span></span><br><span class="line">    <span class="keyword">if</span> (userinfo) &#123; </span><br><span class="line">      next()</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">// 没登录则跳转到登录界面</span></span><br><span class="line">    <span class="keyword">else</span> &#123; </span><br><span class="line">      NProgress.start()</span><br><span class="line">      next(&#123;</span><br><span class="line">        path: <span class="string">'/Login'</span>,</span><br><span class="line">        query: &#123; <span class="attr">redirect</span>: to.fullPath &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.afterEach(<span class="function"><span class="params">transition</span> =&gt;</span> &#123;</span><br><span class="line">  NProgress.done()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><blockquote>
+<p>axios除了接口请求，主要还做了拦截处理，利于接口数据异常统一管理，相关代码都在<code>src/api</code>文件夹内。</p>
+</blockquote>
+<p>请求拦截的逻辑放在<code>src/api/axios.js</code>里。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http请求拦截器&lt;pendding&gt;</span></span><br><span class="line">Axios.interceptors.request.use(</span><br><span class="line">  config =&gt; &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="comment">// 以下的判断处理可根据具体需求场景做一些统一操作</span></span><br><span class="line">    <span class="keyword">const</span> token = cookie.get(<span class="string">'token'</span>)  </span><br><span class="line">    <span class="comment">// 判断是否存在token，即判断用户是否登录</span></span><br><span class="line">    <span class="keyword">if</span> (token) &#123;</span><br><span class="line">      cookie.set(<span class="string">'token'</span>, token, <span class="number">1</span> / <span class="number">12</span>) <span class="comment">// 用户每次操作，都将cookie设置成2小时</span></span><br><span class="line">      config.headers.Authorization = token <span class="comment">// 每个http header都加上token</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> config</span><br><span class="line">  &#125;,</span><br><span class="line"> error =&gt; &#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>所有的接口请求统一放在<code>src/api/index.js</code>里。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首页信息</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getHome = <span class="function">(<span class="params">params</span>) =&gt;</span> axios.get(HOST + <span class="string">'home'</span>, params)</span><br></pre></td></tr></table></figure>
+<p>然后在<code>.vue</code>文件内使用如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/ecmascript-6"</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; getHome &#125; <span class="keyword">from</span> <span class="string">'@/api'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// do something....</span></span><br><span class="line">    methods:&#123;</span><br><span class="line">        <span class="comment">// 获取数据，私有方法尽量使用 _ 前缀</span></span><br><span class="line">        <span class="keyword">async</span> _fetchData() &#123;</span><br><span class="line">          <span class="keyword">const</span> res = <span class="keyword">await</span> getHome()</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> data = res.data</span><br><span class="line">            <span class="keyword">this</span>.slideImgs = data.slideImgs</span><br><span class="line">          &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'获取数据错误'</span>, err)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created()&#123;</span><br><span class="line">        <span class="keyword">this</span>._fetchData()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="mock-js"><a href="#mock-js" class="headerlink" title="mock.js"></a>mock.js</h2><blockquote>
+<p>很多时候我们前端来定接口数据结构，<code>easy-mock</code>等在线工具也好用，但是经常出现不稳定，网址频繁挂掉。这里的moack主要引入<a href="https://www.npmjs.com/package/axios-mock-adapter" target="_blank" rel="noopener">axios-mock-adapter</a>，一样配合axios来做了拦截处理。mock的语法请参考官方文档<a href="https://github.com/nuysoft/Mock/wiki" target="_blank" rel="noopener">Mock</a>。</p>
+</blockquote>
+<p>所有的mock数据接口每条单独一份放在<code>src/mock/data</code>文件夹下，数据对象使用<code>common.js</code>语法暴露出来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// users.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  code: <span class="number">10000</span>,</span><br><span class="line">  message: <span class="string">'success'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    <span class="string">'list|100'</span>: [&#123;</span><br><span class="line">      <span class="string">'id|+1'</span>: <span class="number">1</span>,</span><br><span class="line">      userName: <span class="string">'@cname()'</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>src/mock/index.js</code>里封装了一个<code>CreateInterface</code>类：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreateInterface</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.SUCCESS_STATUS = <span class="number">200</span> <span class="comment">// 成功状态</span></span><br><span class="line">    <span class="keyword">this</span>.FAIL_STATUS = <span class="number">500</span> <span class="comment">// 失败状态</span></span><br><span class="line">    <span class="keyword">this</span>.mocker = <span class="keyword">new</span> MockAdapter(Axios)</span><br><span class="line">    <span class="comment">// mock接口列表，需要手动添加</span></span><br><span class="line">    <span class="keyword">this</span>.interfaces = [</span><br><span class="line">      <span class="string">'users'</span>,</span><br><span class="line">      <span class="comment">// more interface...</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">  init() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; interfaces, mocker, SUCCESS_STATUS &#125; = <span class="keyword">this</span></span><br><span class="line">    interfaces.forEach(<span class="function"><span class="params">filename</span> =&gt;</span> &#123;</span><br><span class="line">      mocker.onGet(filename).reply(<span class="function">(<span class="params">config</span>) =&gt;</span> [SUCCESS_STATUS, Mock.mock(<span class="built_in">require</span>(<span class="string">`./data/<span class="subst">$&#123;filename&#125;</span>`</span>))])</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="editorConfig"><a href="#editorConfig" class="headerlink" title=".editorConfig"></a>.editorConfig</h2><blockquote>
+<p>可操作的配置虽然不多，但是能覆盖大部分情况。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root = <span class="literal">true</span> <span class="comment">#表明是最顶层的配置文件，发现设为true时，才会停止查找.editorconfig文件</span></span><br><span class="line"></span><br><span class="line">[*] <span class="comment"># 对所有文件生效</span></span><br><span class="line">charset = utf-8</span><br><span class="line">indent_style = space <span class="comment">#tab为hard-tabs，space为soft-tabs</span></span><br><span class="line">indent_size = 2 <span class="comment">#设置整数表示规定每级缩进的列数和soft-tabs的宽度</span></span><br><span class="line">end_of_line = lf <span class="comment">#定义换行符，支持lf、cr和crlf</span></span><br><span class="line">insert_final_newline = <span class="literal">true</span> <span class="comment">#设为true表明使文件以一个空白行结尾，false反之</span></span><br><span class="line">trim_trailing_whitespace = <span class="literal">true</span> <span class="comment">#设为true表示会除去换行行首的任意空白字符，false反之</span></span><br></pre></td></tr></table></figure>
+<p> 编辑器一样还是推荐使用VsCode，里面有个插件支持可以安装下。<br><img src="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/2.png?raw=true" alt="editorConfig for VsCode"></p>
+<h2 id="Vue-Meta"><a href="#Vue-Meta" class="headerlink" title="Vue-Meta"></a>Vue-Meta</h2><blockquote>
+<p>视情况使用，一般在PC端应用的相对比较多。在<code>main.js</code>里引入后全局注册。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueMeta <span class="keyword">from</span> <span class="string">'vue-meta'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 单独设置页面的title和meta信息</span></span><br><span class="line">Vue.use(VueMeta)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>具体在vue文件内使用方法如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      pageTitle: <span class="string">'个人中心'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  metaInfo() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title: <span class="keyword">this</span>.pageTitle,</span><br><span class="line">      titleTemplate: <span class="string">'%s - Test'</span>,</span><br><span class="line">      script: [&#123; <span class="attr">innerHTML</span>: <span class="string">'console.log("Hey!~~!")'</span>, <span class="attr">type</span>: <span class="string">'text/javascript'</span> &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">![title](https:<span class="comment">//github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/3.png?raw=true)</span></span><br><span class="line">![控制台<span class="built_in">console</span>](https:<span class="comment">//github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/4.png?raw=true)</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="husky-lint-staged"><a href="#husky-lint-staged" class="headerlink" title="husky + lint-staged"></a>husky + lint-staged</h2><blockquote>
+<p>主要是在把 Lint 挪到本地，并且每次提交只检查本次提交所修改的文件，使用 <code>git commit -a</code>，或者先 <code>git add</code>然后 <code>git commit</code> 的时候，你的修改代码都会经过待提交区。</p>
+</blockquote>
+<p>主要配置在<code>package.js</code>配置文件里.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"script"</span>:&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="string">"precommit"</span>: <span class="string">"lint-staged"</span></span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="string">"lint-staged"</span>: &#123;</span><br><span class="line">    <span class="string">"src/**/*.&#123;js,ts&#125;"</span>: [</span><br><span class="line">      <span class="string">"standard --write"</span>,</span><br><span class="line">      <span class="string">"eslint --fix"</span>,</span><br><span class="line">      <span class="string">"git add"</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="vue-lazyload"><a href="#vue-lazyload" class="headerlink" title="vue-lazyload"></a>vue-lazyload</h2><blockquote>
+<p>它其实就是注册一个全局指令，然后使用一个默认图片。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// do something </span></span><br><span class="line">Vue.use(VueLazyLoad, &#123;</span><br><span class="line">  loading: <span class="built_in">require</span>(<span class="string">'./common/image/default.png'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// do something</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"img"</span>  <span class="attr">v-lazy</span>=<span class="string">"item.url"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="vue-lazy-component"><a href="#vue-lazy-component" class="headerlink" title="vue-lazy-component"></a>vue-lazy-component</h2><blockquote>
+<p>引用这个插件具体解决做Seketon骨架屏效果。可配置的参数实用，效果不错。</p>
+</blockquote>
+<ul>
+<li>支持 组件可见或即将可见时懒加载</li>
+<li>支持 组件延时加载</li>
+<li>支持 加载真实组件前展示骨架组件，提高用户体验</li>
+<li>支持 真实组件代码分包异步加载</li>
+</ul>
+<ul>
+<li>具体文档参考<a href="https://www.npmjs.com/package/@xunlei/vue-lazy-component" target="_blank" rel="noopener">@xunlei/vue-lazy-component</a>。</li>
+<li><a href="https://xunleif2e.github.io/vue-lazy-component/demo/dist/index.html#/" target="_blank" rel="noopener">在线Demo效果</a></li>
+</ul>
+<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><blockquote>
+<p>推荐直接阅读<a href="https://vuex.vuejs.org/zh/guide/" target="_blank" rel="noopener">vuex官方文档</a>。项目结构一样是使用的官方推荐的。</p>
+</blockquote>
+<h2 id="vuex-persistedstate"><a href="#vuex-persistedstate" class="headerlink" title="vuex-persistedstate"></a>vuex-persistedstate</h2><blockquote>
+<p> 数据持久化解决方案,主要使用场景是，页面刷新时当前页面的状态仍然可以保持。</p>
+</blockquote>
+<ul>
+<li>当vuex状态发生改变时，自动同步保存到<code>localStorage</code>。</li>
+<li>当重新加载页面vuex初始化时，自动将<code>localStorage</code>存储的数据作为初始状态加载。</li>
+</ul>
+<p>在<code>src/store/index.js</code>内引入插件并使用，无需其它操作。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> createPersistedState <span class="keyword">from</span> <span class="string">'vuex-persistedstate'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> storage <span class="keyword">from</span> <span class="string">'@/utils/storage'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  actions,</span><br><span class="line">  getters,</span><br><span class="line">  state,</span><br><span class="line">  mutations,</span><br><span class="line">  strict: debug,</span><br><span class="line">  <span class="comment">// 状态持久化</span></span><br><span class="line">  plugins: [</span><br><span class="line">    createPersistedState(&#123;</span><br><span class="line">      storage: &#123;</span><br><span class="line">        getItem: <span class="function"><span class="params">key</span> =&gt;</span> storage.get(key),</span><br><span class="line">        setItem: <span class="function">(<span class="params">key, value</span>) =&gt;</span> storage.set(key, value),</span><br><span class="line">        removeItem: <span class="function"><span class="params">key</span> =&gt;</span> storage.remove(key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="vuex-router-sync"><a href="#vuex-router-sync" class="headerlink" title="vuex-router-sync"></a>vuex-router-sync</h2><blockquote>
+<p>主要是router的状态&lt;path,query和params&gt;存入vuex的state中；<br>使用方式如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">store.state.route.path   <span class="comment">// current path (string)</span></span><br><span class="line">store.state.route.params <span class="comment">// current params (object)</span></span><br><span class="line">store.state.route.query  <span class="comment">// current query (object)</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<h1 id="UI库-1"><a href="#UI库-1" class="headerlink" title="UI库"></a>UI库</h1><h2 id="Cube-UI"><a href="#Cube-UI" class="headerlink" title="Cube-UI"></a>Cube-UI</h2><blockquote>
+<p>cube-ui 是基于 Vue.js 实现的精致移动端组件库。推荐阅读<a href="https://didi.github.io/cube-ui/#/zh-CN/docs/introduction" target="_blank" rel="noopener">官方文档</a>。</p>
+<ul>
+<li>PC门户网站：使用<a href="https://muse-ui.org/#/zh-CN/installation" target="_blank" rel="noopener">Muse-UI</a></li>
+<li>PC后台CMS：使用<a href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/" target="_blank" rel="noopener">vue-element-admin</a>。</li>
+</ul>
+</blockquote>
+<p>常用的组件我们可以直接在<code>main.js</code>里全局注册</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="comment">// eslint-disable-next-line</span></span><br><span class="line">  Style,  <span class="comment">// 引入 Style 加载基础样式</span></span><br><span class="line">  Loading,</span><br><span class="line">  Button,</span><br><span class="line">  Dialog,</span><br><span class="line">  Toast,</span><br><span class="line">  Scroll</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'cube-ui'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Scroll)</span><br><span class="line">Vue.use(Loading)</span><br><span class="line">Vue.use(Button)</span><br><span class="line">Vue.use(Dialog)</span><br><span class="line">Vue.use(Toast)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Webpack优化"><a href="#Webpack优化" class="headerlink" title="Webpack优化"></a>Webpack优化</h1><blockquote>
+<p>与2.x相同，在根目录下新建了<code>build</code>文件夹。所有可以优化webpack相关的代码逻辑放入这里，仍然通过node环境变量来使用<code>webpack-merge</code>做逻辑合并。</p>
+</blockquote>
+<ul>
+<li><strong>webpack.base.conf.js</strong> 共用的配置文件</li>
+<li><strong>webpack.dev.conf.js</strong>  走开发环境的配置文件</li>
+<li><strong>webpack.prod.conf.js</strong>  走生产环境的配置文件</li>
+<li><strong>config.js</strong>           配置参数</li>
+</ul>
+<h2 id="Happypack"><a href="#Happypack" class="headerlink" title="Happypack"></a>Happypack</h2><blockquote>
+<p>通过多进程模型，来加速代码构建，代码在<code>webpack.prod.conf.js</code>文件中，主要使用了Happypack的<code>ThreadPool</code>方法，HappyThreadPool(“进程池”) 对象来管理生成的子进程对象。利用缓存来使得rebuild 更快。</p>
+</blockquote>
+<blockquote>
+<p>推荐阅读<a href="http://taobaofed.org/blog/2016/12/08/happypack-source-code-analysis/" target="_blank" rel="noopener">happypack 原理解析</a>。</p>
+</blockquote>
+<p>具体操作方法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.prod.conf.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> OS = <span class="built_in">require</span>(<span class="string">'os'</span>)</span><br><span class="line"><span class="keyword">const</span> HappyPack = <span class="built_in">require</span>(<span class="string">'happypack'</span>)</span><br><span class="line"><span class="keyword">const</span> happyThreadPool = HappyPack.ThreadPool(&#123; <span class="attr">size</span>: OS.cpus().length &#125;)</span><br><span class="line"></span><br><span class="line">  &#123; </span><br><span class="line">  <span class="comment">// do something...</span></span><br><span class="line">      plugins: [</span><br><span class="line">        <span class="keyword">new</span> HappyPack(&#123;</span><br><span class="line">          id: <span class="string">'happybabel'</span>,</span><br><span class="line">          loaders: [<span class="string">'babel-loader'</span>],</span><br><span class="line">          threadPool: happyThreadPool,</span><br><span class="line">          cache: <span class="literal">true</span>,</span><br><span class="line">          verbose: <span class="literal">true</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="webpack-parallel-unglify-plugin"><a href="#webpack-parallel-unglify-plugin" class="headerlink" title="webpack-parallel-unglify-plugin"></a>webpack-parallel-unglify-plugin</h2><blockquote>
+<p>webpack提供的UglifyJS插件由于采用单线程压缩，速度很慢； 使用<code>webpack-parallel-unglify-plugin</code>可以并行运行UglifyJS插件，这可以有效减少构建时间多线程压缩js。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.prod.conf.js</span></span><br><span class="line"><span class="keyword">const</span> ParallelUglifyPlugin = <span class="built_in">require</span>(<span class="string">'webpack-parallel-uglify-plugin'</span>)</span><br><span class="line"></span><br><span class="line">  &#123; </span><br><span class="line">  <span class="comment">// do something...</span></span><br><span class="line">      plugins: [</span><br><span class="line">        <span class="keyword">new</span> ParallelUglifyPlugin(&#123;</span><br><span class="line">          cacheDir: <span class="string">'.cache/'</span>,</span><br><span class="line">          sourceMap: <span class="literal">false</span>,</span><br><span class="line">          uglifyJS: &#123;</span><br><span class="line">            output: &#123; <span class="attr">comments</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">            compress: &#123; <span class="attr">warnings</span>: <span class="literal">false</span> &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赞赏一下！～</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="KyleWang WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="KyleWang Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工作流/" rel="tag"># 工作流</a>
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/08/Promise的前世/" rel="next" title="Promise的前世">
+                <i class="fa fa-chevron-left"></i> Promise的前世
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/17/Vue开发规范/" rel="prev" title="Vue开发规范">
+                Vue开发规范 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="KyleWang" />
+            
+              <p class="site-author-name" itemprop="name">KyleWang</p>
+              <p class="site-description motion-element" itemprop="description">写写代码，做做设计，离开世界之前，一切都是过程。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kylewang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:417940197@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概览"><span class="nav-number">1.</span> <span class="nav-text">概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Base"><span class="nav-number">1.1.</span> <span class="nav-text">Base</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注入插件"><span class="nav-number">1.2.</span> <span class="nav-text">注入插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI库"><span class="nav-number">1.3.</span> <span class="nav-text">UI库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Webpack-优化"><span class="nav-number">1.4.</span> <span class="nav-text">Webpack 优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature"><span class="nav-number">1.5.</span> <span class="nav-text">Feature</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Base-脚手架"><span class="nav-number">2.</span> <span class="nav-text">Base 脚手架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件说明"><span class="nav-number">3.</span> <span class="nav-text">插件说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PostCss"><span class="nav-number">3.1.</span> <span class="nav-text">PostCss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stylus-Stylus-loader"><span class="nav-number">3.2.</span> <span class="nav-text">Stylus + Stylus-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VConsole"><span class="nav-number">3.3.</span> <span class="nav-text">VConsole</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lodash"><span class="nav-number">3.4.</span> <span class="nav-text">Lodash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NProgress"><span class="nav-number">3.5.</span> <span class="nav-text">NProgress</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axios"><span class="nav-number">3.6.</span> <span class="nav-text">axios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mock-js"><span class="nav-number">3.7.</span> <span class="nav-text">mock.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#editorConfig"><span class="nav-number">3.8.</span> <span class="nav-text">.editorConfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Meta"><span class="nav-number">3.9.</span> <span class="nav-text">Vue-Meta</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#husky-lint-staged"><span class="nav-number">3.10.</span> <span class="nav-text">husky + lint-staged</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-lazyload"><span class="nav-number">3.11.</span> <span class="nav-text">vue-lazyload</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-lazy-component"><span class="nav-number">3.12.</span> <span class="nav-text">vue-lazy-component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vuex"><span class="nav-number">3.13.</span> <span class="nav-text">vuex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vuex-persistedstate"><span class="nav-number">3.14.</span> <span class="nav-text">vuex-persistedstate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vuex-router-sync"><span class="nav-number">3.15.</span> <span class="nav-text">vuex-router-sync</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI库-1"><span class="nav-number">4.</span> <span class="nav-text">UI库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cube-UI"><span class="nav-number">4.1.</span> <span class="nav-text">Cube-UI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Webpack优化"><span class="nav-number">5.</span> <span class="nav-text">Webpack优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Happypack"><span class="nav-number">5.1.</span> <span class="nav-text">Happypack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-parallel-unglify-plugin"><span class="nav-number">5.2.</span> <span class="nav-text">webpack-parallel-unglify-plugin</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-paw"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KyleWang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
