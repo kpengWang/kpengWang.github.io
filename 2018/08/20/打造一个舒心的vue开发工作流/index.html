@@ -82,7 +82,7 @@
 
 
 
-  <meta name="keywords" content="工作流,Vue," />
+  <meta name="keywords" content="Vue,工作流," />
 
 
 
@@ -96,7 +96,7 @@
 
 
 <meta name="description" content="概览Base vue-cli3.0  注入插件 PostCss =&amp;gt; 支持px单位自动换算 Stylus + Stylus-loader =&amp;gt; 支持Stylus语法糖 VConsole =&amp;gt; 支持移动端调试控制台 Lodash  =&amp;gt; 支持Js工具库 NProgress =&amp;gt; 支持页面跳转顶部loading axios  =&amp;gt; 支持ajax数据请求和数据劫持 m">
-<meta name="keywords" content="工作流,Vue">
+<meta name="keywords" content="Vue,工作流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="打造一个舒心的vue开发工作流">
 <meta property="og:url" content="https://kpeng.wang/2018/08/20/打造一个舒心的vue开发工作流/index.html">
@@ -104,11 +104,14 @@
 <meta property="og:description" content="概览Base vue-cli3.0  注入插件 PostCss =&amp;gt; 支持px单位自动换算 Stylus + Stylus-loader =&amp;gt; 支持Stylus语法糖 VConsole =&amp;gt; 支持移动端调试控制台 Lodash  =&amp;gt; 支持Js工具库 NProgress =&amp;gt; 支持页面跳转顶部loading axios  =&amp;gt; 支持ajax数据请求和数据劫持 m">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/1.png?raw=true">
+<meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/7.png?raw=true">
+<meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/8.png?raw=true">
+<meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/9.png?raw=true">
 <meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/6.jpg?raw=true">
 <meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/2.png?raw=true">
 <meta property="og:image" content="https://raw.githubusercontent.com/kpengWang/Blog-images-storage/master/2018-08-17/3.png">
 <meta property="og:image" content="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/4.png?raw=true">
-<meta property="og:updated_time" content="2018-08-20T10:34:44.000Z">
+<meta property="og:updated_time" content="2018-08-21T08:10:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="打造一个舒心的vue开发工作流">
 <meta name="twitter:description" content="概览Base vue-cli3.0  注入插件 PostCss =&amp;gt; 支持px单位自动换算 Stylus + Stylus-loader =&amp;gt; 支持Stylus语法糖 VConsole =&amp;gt; 支持移动端调试控制台 Lodash  =&amp;gt; 支持Js工具库 NProgress =&amp;gt; 支持页面跳转顶部loading axios  =&amp;gt; 支持ajax数据请求和数据劫持 m">
@@ -394,6 +397,14 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 此段代码在依赖包postcss-px-to-viewport/index.js里 大约第30行</span></span><br><span class="line">...</span><br><span class="line">css.walkDecls(<span class="function"><span class="keyword">function</span> (<span class="params">decl, i</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (options.exclude) &#123; <span class="comment">// 添加对exclude选项的处理</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(options.exclude) !== <span class="string">'[object RegExp]'</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'options.exclude should be RegExp!'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (decl.source.input.file.match(options.exclude) !== <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>然后就在<code>.postcssrc</code>配置文件里添加</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"> <span class="string">"postcss-px-to-viewport"</span>:&#123;</span><br><span class="line">     ...</span><br><span class="line">    exclude: <span class="regexp">/(\/|\\)(node_modules)(\/|\\)/</span>  <span class="comment">// 忽略node_modules</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>编译前</p>
+</blockquote>
+<p><img src="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/7.png?raw=true" alt="stylus"></p>
+<blockquote>
+<p>编译后</p>
+</blockquote>
+<p><img src="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/8.png?raw=true" alt="css1"><br><img src="https://github.com/kpengWang/Blog-images-storage/blob/master/2018-08-17/9.png?raw=true" alt="css2"></p>
 <h2 id="Stylus-Stylus-loader"><a href="#Stylus-Stylus-loader" class="headerlink" title="Stylus + Stylus-loader"></a>Stylus + Stylus-loader</h2><blockquote>
 <p>推荐使用Stylus，语法简练。<br>具体语法可参考<a href="https://devhints.io/stylus" target="_blank" rel="noopener">Stylus cheatsheet</a></p>
 </blockquote>
@@ -553,9 +564,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/工作流/" rel="tag"># 工作流</a>
-          
             <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+            <a href="/tags/工作流/" rel="tag"># 工作流</a>
           
         </div>
       
@@ -577,6 +588,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/08/使用webpack4.x定制前端开发环境/" rel="prev" title="使用webpack4.x定制前端开发环境">
+                使用webpack4.x定制前端开发环境 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -657,7 +672,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -670,7 +685,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -748,7 +763,7 @@
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
   </span>
